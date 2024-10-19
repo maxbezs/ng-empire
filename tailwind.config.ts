@@ -21,12 +21,21 @@ const config: Config = {
           '0%': { opacity: '0.2' },
           '20%': { opacity: '1' },
           '100%': { opacity: '0.2' }
-        }
+        },tickerDesktop: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+        tickerMobile: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
       },
       animation: {
         fadeIn: 'fadeIn .3s ease-in-out',
         carousel: 'marquee 60s linear infinite',
-        blink: 'blink 1.4s both infinite'
+        blink: 'blink 1.4s both infinite',
+        desktop: 'tickerDesktop 20s linear infinite',
+        mobile: 'tickerMobile 35s linear infinite'
       }
     }
   },

@@ -12,7 +12,6 @@ const { SITE_NAME } = process.env;
 
 export async function Navbar() {
   const menu = await getMenu('main-menu');
-  console.log(JSON.stringify(menu));
   const renderSubmenu = (children: Menu[]) => {
     return (
       <ul className="absolute left-0 top-full hidden w-fit min-w-40 rounded-lg border-2 border-white bg-[#92d4ee] p-4 shadow-lg group-hover:block">
