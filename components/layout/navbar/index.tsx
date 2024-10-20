@@ -45,21 +45,27 @@ export async function Navbar() {
         <div className="hidden w-1/3 md:flex">
           {menu.length ? (
             <ul className="hidden gap-6 md:flex md:items-center">
-              {menu.map((item: Menu) => (
-                <li key={item.title} className="group relative">
-                  <Link
-                    href={item.path}
-                    prefetch={true}
-                    className="flex items-center text-white underline-offset-4 hover:underline"
-                  >
-                    {item.title}
-                    {item.items && item.items.length > 0 && (
-                      <ChevronDownIcon className="ml-1 h-4 w-4 text-white" />
-                    )}
-                  </Link>
-                  {item.items && item.items.length > 0 && renderSubmenu(item.items)}
-                </li>
-              ))}
+              {menu.map((item: Menu) => {
+                let updatedUrl = item.path.replace(
+                  'https://nakedground.coffee',
+                  'http://localhost:3000' || ''
+                );
+                return (
+                  <li key={item.title} className="group relative">
+                    <Link
+                      href={updatedUrl}
+                      prefetch={true}
+                      className="flex items-center text-white underline-offset-4 hover:underline"
+                    >
+                      {item.title}
+                      {item.items && item.items.length > 0 && (
+                        <ChevronDownIcon className="ml-1 h-4 w-4 text-white" />
+                      )}
+                    </Link>
+                    {item.items && item.items.length > 0 && renderSubmenu(item.items)}
+                  </li>
+                );
+              })}
             </ul>
           ) : null}
         </div>
