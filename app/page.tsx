@@ -5,8 +5,6 @@ import LeftImageSection from 'components/sections/LeftImageSection';
 import Matcha from 'components/sections/Matcha';
 import Section from 'components/sections/Section';
 
-import Footer from 'components/layout/footer';
-
 export const metadata = {
   description: 'High-performance ecommerce store built with Next.js, Vercel, and Shopify.',
   openGraph: {
@@ -26,7 +24,6 @@ export default function HomePage() {
         <Matcha />
         <CardCarousel />
       </div>
-      <Footer />
     </>
   );
 }

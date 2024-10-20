@@ -60,7 +60,7 @@ const page = () => {
           <div className="flex items-center justify-center md:w-1/2">
             <div className="h-0 w-full md:h-auto md:w-auto" style={{ aspectRatio: '1 / 1' }}>
               <img
-                src={sectionContent[activeSection].image}
+                src={sectionContent[activeSection]?.image}
                 alt={`Image for ${activeSection}`}
                 className="h-full w-full object-cover"
               />
@@ -70,7 +70,7 @@ const page = () => {
           {/* Right Section: Text */}
           <div className="flex flex-col justify-center p-6 md:w-1/2">
             <h2 className="mb-2 text-2xl font-semibold">{activeSection}</h2>
-            <p className="mx-auto w-fit max-w-lg">{sectionContent[activeSection].text}</p>
+            <p className="mx-auto w-fit max-w-lg">{sectionContent[activeSection]?.text}</p>
           </div>
         </div>
 

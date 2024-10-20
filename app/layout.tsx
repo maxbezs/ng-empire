@@ -1,4 +1,5 @@
 import { CartProvider } from 'components/cart/cart-context';
+import Footer from 'components/layout/footer';
 import { Navbar } from 'components/layout/navbar';
 import { WelcomeToast } from 'components/welcome-toast';
 import WhatsappButton from 'components/WhatsappButton';
@@ -60,6 +61,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             <Toaster closeButton />
             <WelcomeToast /> <WhatsappButton />
           </main>
+          <Footer />
         </CartProvider>
       </body>
     </html>
