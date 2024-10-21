@@ -53,7 +53,7 @@ export async function Navbar() {
       <ul className="absolute left-0 top-full z-10 hidden w-fit min-w-40 rounded-lg border-2 border-white bg-[#92d4ee] p-4 shadow-lg group-hover:block">
         {children.map((subItem) => {
           const updatedSubUrl = subItem.path.replace(
-            'https://rouge-technologies.myshopify.com',
+            'https://nakedground.coffee',
             process.env.NEXT_PUBLIC_LOCAL_STORE_URL || ''
           );
           return (
@@ -85,8 +85,9 @@ export async function Navbar() {
               {menu.map((item: Menu) => {
                 let updatedUrl = item.path.replace(
                   'https://nakedground.coffee',
-                  'http://localhost:3000' || ''
+                  'https://ng-empire.vercel.app'
                 );
+
                 return (
                   <li key={item.title} className="group relative">
                     <Link
