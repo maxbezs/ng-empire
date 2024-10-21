@@ -2,18 +2,45 @@ import Link from 'next/link';
 
 import FooterMenu from 'components/layout/footer-menu';
 import LogoSquare from 'components/logo-square';
-import { getMenu } from 'lib/shopify';
 import { Suspense } from 'react';
 import PaymentsList from '../layout/PaymentsList';
 import SocialLinks from '../layout/SocialLinks';
 
 const { COMPANY_NAME, SITE_NAME } = process.env;
-
+const gymMenu = [
+  {
+    title: 'Store',
+    path: 'https://nakedground.coffee/search/all',
+    items: [
+      { title: 'COFFEE', path: 'https://nakedground.coffee/search/coffee', items: [] },
+      { title: 'MERCHANDISE', path: 'https://nakedground.coffee/search/merchandise', items: [] },
+      { title: 'MÁS QUE CAFÉ', path: 'https://nakedground.coffee/mas-que-cafe', items: [] }
+    ]
+  },
+  { title: 'Memberships', path: 'https://nakedground.coffee/gym/memberships', items: [] },
+  { title: 'Timetable', path: 'https://nakedground.coffee/gym/timetable', items: [] },
+  { title: 'Contact Us', path: 'https://nakedground.coffee/gym/contact-us', items: [] }
+];
+const shopMenu = [
+  {
+    title: 'Store',
+    path: 'https://nakedground.coffee/search/all',
+    items: [
+      { title: 'COFFEE', path: 'https://nakedground.coffee/search/coffee', items: [] },
+      { title: 'MERCHANDISE', path: 'https://nakedground.coffee/search/merchandise', items: [] },
+      { title: 'MÁS QUE CAFÉ', path: 'https://nakedground.coffee/mas-que-cafe', items: [] }
+    ]
+  },
+  { title: 'Our story', path: 'https://nakedground.coffee/our-story', items: [] },
+  { title: 'Ibiza', path: 'https://nakedground.coffee/ibiza', items: [] },
+  { title: 'Events', path: 'https://nakedground.coffee/events', items: [] },
+  { title: 'Health Club', path: 'https://nakedground.coffee/gym', items: [] }
+];
 export default async function Footer() {
   const currentYear = new Date().getFullYear();
   const copyrightDate = 2023 + (currentYear > 2023 ? `-${currentYear}` : '');
   const skeleton = 'w-full h-6 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700';
-  const menu = await getMenu('footer');
+  const menu = shopMenu;
   const copyrightName = COMPANY_NAME || SITE_NAME || '';
 
   return (
