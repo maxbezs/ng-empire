@@ -57,11 +57,8 @@ const CardCarousel = () => {
       <div className="block md:hidden">
         <Slider {...settings} ref={sliderRef}>
           {dummyCardData.map((card) => (
-            <div className="px-1">
-              <div
-                key={card.id}
-                className="group relative rounded-2xl border bg-[#e6e6e6] p-2 shadow"
-              >
+            <div key={card.id} className="px-1">
+              <div className="group relative rounded-2xl border bg-[#e6e6e6] p-2 shadow">
                 <img
                   src={card.imageUrl}
                   alt={card.description}

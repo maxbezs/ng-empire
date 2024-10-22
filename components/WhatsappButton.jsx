@@ -7,8 +7,8 @@ const WhatsappButton = () => {
         aria-label="Send a message via WhatsApp"
         href="https://wa.me/+34641773346?text=Hey,I have a question "
       >
-        <div className="h-20 w-20">
-          <svg className="h-20 w-20" viewBox="0 0 175.216 175.552">
+        <div className="h-16 w-16 sm:h-20 sm:w-20">
+          <svg className="h-16 w-16 sm:h-20 sm:w-20" viewBox="0 0 175.216 175.552">
             <defs>
               <linearGradient
                 id="b"
