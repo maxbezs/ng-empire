@@ -19,7 +19,6 @@ const Chaga = () => {
             <h1 className="text-5xl font-bold">Chaga</h1>
             <p className="text-2xl">Introducing Siberian Chaga Crystals by Naked Ground</p>
             <a href="#" className="rounded-full bg-black px-8 py-4 font-bold">
-              {' '}
               SHOP NOW
             </a>
           </div>

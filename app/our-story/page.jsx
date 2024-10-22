@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import CardSlider from '../../components/CardSlider';
 
 const page = () => {
   const [activeSection, setActiveSection] = useState('2022');
@@ -53,12 +54,25 @@ const page = () => {
   ];
   return (
     <>
-      <div className="flex w-full flex-col items-center px-24">
+      <div className="flex w-full flex-col items-center md:px-24">
         {/* Dynamic Section */}
-        <div className="mb-4 flex w-full flex-col text-center md:flex-row">
-          {/* Left Section: Image */}
-          <div className="flex items-center justify-center md:w-1/2">
-            <div className="h-0 w-full md:h-auto md:w-auto" style={{ aspectRatio: '1 / 1' }}>
+        <div className="relative w-full text-center md:flex md:flex-row">
+          {/* Mobile Version: Background Image with Text Overlay */}
+          <div
+            className="flex h-[500px] w-full items-center justify-center bg-cover bg-center text-white md:hidden"
+            style={{
+              backgroundImage: `url(${sectionContent[activeSection]?.image})`
+            }}
+          >
+            <div className="flex h-full flex-col justify-center bg-black bg-opacity-60 px-6 sm:p-6">
+              <h2 className="mb-2 text-2xl font-semibold">{activeSection}</h2>
+              <p className="mx-auto w-fit max-w-lg">{sectionContent[activeSection]?.text}</p>
+            </div>
+          </div>
+
+          {/* Desktop Version: Separate Image and Text */}
+          <div className="hidden w-full items-center justify-center md:flex md:w-1/2">
+            <div className="h-0 w-full md:h-auto" style={{ aspectRatio: '1 / 1' }}>
               <img
                 src={sectionContent[activeSection]?.image}
                 alt={`Image for ${activeSection}`}
@@ -66,21 +80,19 @@ const page = () => {
               />
             </div>
           </div>
-
-          {/* Right Section: Text */}
-          <div className="flex flex-col justify-center p-6 md:w-1/2">
+          <div className="hidden flex-col justify-center p-6 md:flex md:w-1/2">
             <h2 className="mb-2 text-2xl font-semibold">{activeSection}</h2>
             <p className="mx-auto w-fit max-w-lg">{sectionContent[activeSection]?.text}</p>
           </div>
         </div>
 
         {/* Buttons to change the active section */}
-        <div className="flex space-x-2">
+        <div className="mx-2 flex gap-3 sm:space-x-2">
           {Object.keys(sectionContent).map((section) => (
             <button
               key={section}
               onClick={() => setActiveSection(section)}
-              className={`rounded-md px-4 py-2 font-medium transition-colors ${
+              className={`rounded-md py-2 font-medium transition-colors sm:px-4 ${
                 activeSection === section ? 'text-gray-500 underline' : 'text-black'
               }`}
             >
@@ -89,7 +101,8 @@ const page = () => {
           ))}
         </div>
       </div>
-      <div className="bg-gray-50 py-8">
+      <CardSlider />
+      <div className="hidden bg-gray-50 py-8 sm:block">
         <h2 className="mb-8 text-center text-2xl font-semibold">OUR TEAM</h2>
         <div className="flex flex-wrap justify-center gap-8">
           {teamMembers.map((member, index) => (
@@ -108,7 +121,7 @@ const page = () => {
             </div>
           ))}
         </div>
-      </div>{' '}
+      </div>
       <div
         className="relative flex h-[600px] items-center justify-center bg-cover bg-center"
         style={{
@@ -117,11 +130,11 @@ const page = () => {
         }}
       >
         {/* Overlay for a darker background effect */}
-        <div className="absolute inset-0 bg-black opacity-30"></div>
+        <div className="absolute inset-0 bg-black opacity-40"></div>
 
         {/* Text content */}
         <div className="relative p-4 text-center text-white">
-          <h2 className="text-6xl font-bold">GET IN TOUCH</h2>
+          <h2 className="text-4xl font-bold sm:text-6xl">GET IN TOUCH</h2>
           <p className="mt-2">
             Click the WhatsApp icon on your screen and get in touch with our team!
           </p>

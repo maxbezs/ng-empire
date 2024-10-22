@@ -1,10 +1,27 @@
 const page = () => {
+  const images = [
+    'https://nakedground.coffee/cdn/shop/files/breakfast-croissant-sandwich-cafe_336x336_crop_center.jpg?v=1716328638',
+    'https://nakedground.coffee/cdn/shop/files/a-pair-of-acai-bowls_336x336_crop_center.jpg?v=1716320844',
+    'https://nakedground.coffee/cdn/shop/files/latte-with-leaf-design_336x336_crop_center.jpg?v=1716322046',
+    'https://nakedground.coffee/cdn/shop/files/berries-granola_336x336_crop_center.jpg?v=1716321383',
+    'https://nakedground.coffee/cdn/shop/files/fresh-juice-on-cafe-table_336x336_crop_center.jpg?v=1716328450',
+    'https://nakedground.coffee/cdn/shop/files/wooden-plate-with-pastry-and-assorted-berries_336x336_crop_center.jpg?v=1716320984'
+  ];
   return (
     <>
-      <div className="flex w-full flex-col px-24 md:flex-row">
-        {/* Left Section: Text */}
-        <div className="flex flex-col justify-center p-8 md:w-1/2">
-          <h1 className="mb-4 text-3xl font-bold text-black">Naked Ground Ibiza</h1>
+      <div className="flex w-full flex-col md:flex-row-reverse md:p-8 md:px-24">
+        {/* Image Section */}
+        <div className="h-96 w-full md:h-auto md:w-1/2">
+          <img
+            src="https://nakedground.coffee/cdn/shop/files/dry-grass-beach-umbrellas.jpg?v=1716327805&width=900"
+            alt="Naked Ground Ibiza"
+            className="h-full w-full object-cover sm:rounded-lg"
+          />
+        </div>
+
+        {/* Text Section */}
+        <div className="flex flex-col justify-center p-4 md:w-1/2 md:p-8">
+          <h1 className="mb-4 text-2xl font-bold text-black md:text-3xl">Naked Ground Ibiza</h1>
           <p className="mb-4 text-gray-700">
             Edificio Koala, Carrer Ricardo Curtoys Gotarredona, Local 8, 07840 Santa Eulària des
             Riu, Illes Balears, Spain
@@ -18,17 +35,8 @@ const page = () => {
             <p className="text-gray-700">eliza@nakedground.coffee</p>
           </div>
         </div>
-
-        {/* Right Section: Image */}
-        <div className="h-64 md:h-auto md:w-1/2">
-          <img
-            src="https://nakedground.coffee/cdn/shop/files/dry-grass-beach-umbrellas.jpg?v=1716327805&width=900"
-            alt="Naked Ground Ibiza"
-            className="h-full w-full object-cover"
-          />
-        </div>
       </div>
-      <div className="m-24">
+      <div className="mx-4 my-8 md:mx-24">
         <div className="relative h-[700px] w-full overflow-hidden rounded-[32px]">
           {/* Video Background */}
           <video
@@ -49,10 +57,19 @@ const page = () => {
           </div>
 
           {/* Background Overlay for better text readability */}
-          <div className="absolute inset-0 bg-black opacity-30"></div>
+          <div className="absolute inset-0 bg-black opacity-20"></div>
         </div>
-      </div>{' '}
-      <img src="https://cdn.shopify.com/s/files/1/0785/0233/0701/files/sLp7kb.jpg?v=1729411882" />
+      </div>
+      <div className="grid grid-cols-2 sm:flex">
+        {images.slice(0, 6).map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt={`Image ${index + 1}`}
+            className="h-auto w-full object-cover"
+          />
+        ))}
+      </div>
     </>
   );
 };

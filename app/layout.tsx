@@ -54,7 +54,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
                 ×
               </button>
             </div>
-          </section>{' '}
+          </section>
           <Navbar />
           <main>
             {children}

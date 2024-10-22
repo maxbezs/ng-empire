@@ -52,64 +52,77 @@ Join us at Lords for an unforgettable experience, and savor the perfect cup of c
         }}
       >
         {/* Overlay for a darker background effect */}
-        <div className="absolute inset-0 bg-black opacity-30"></div>
+        <div className="absolute inset-0 bg-black opacity-60"></div>
 
         {/* Text content */}
         <div className="relative p-4 text-center text-white">
-          <h2 className="text-4xl font-bold">
+          <h2 className="text-2xl font-bold sm:text-4xl">
             MILLIONS OF EYES ON THE BRAND, EVERY. SINGLE. WEEK.
           </h2>
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-4 px-24 py-8">
+      <div className="flex space-x-4 overflow-x-auto px-4 py-8 md:grid md:grid-cols-4 md:gap-4 md:px-24">
         <img
           src="https://nakedground.coffee/cdn/shop/files/20240711093836996.jpg?crop=center&height=460&v=1723055298&width=460"
           alt="Image 1"
-          className="h-auto w-full"
+          className="h-auto w-[80vw] flex-shrink-0 md:w-full"
         />
         <img
           src="https://nakedground.coffee/cdn/shop/files/20240620173024718.jpg?crop=center&height=460&v=1723055298&width=460"
           alt="Image 2"
-          className="h-auto w-full"
+          className="h-auto w-[80vw] flex-shrink-0 md:w-full"
         />
         <img
           src="https://nakedground.coffee/cdn/shop/files/20240609152730052.jpg?crop=center&height=460&v=1723055299&width=460"
           alt="Image 3"
-          className="h-auto w-full"
+          className="h-auto w-[80vw] flex-shrink-0 md:w-full"
         />
         <img
           src="https://nakedground.coffee/cdn/shop/files/20240711090419980.jpg?crop=center&height=460&v=1723055298&width=460"
           alt="Image 4"
-          className="h-auto w-full"
+          className="h-auto w-[80vw] flex-shrink-0 md:w-full"
         />
         <img
           src="https://nakedground.coffee/cdn/shop/files/20240609152805819.jpg?crop=center&height=460&v=1725364774&width=460"
           alt="Image 5"
-          className="h-auto w-full"
+          className="h-auto w-[80vw] flex-shrink-0 md:w-full"
         />
         <img
           src="https://nakedground.coffee/cdn/shop/files/20240530161120236_1.jpg?crop=center&height=460&v=1723649620&width=460"
           alt="Image 6"
-          className="h-auto w-full"
+          className="h-auto w-[80vw] flex-shrink-0 md:w-full"
         />
         <img
           src="https://nakedground.coffee/cdn/shop/files/20240530172535108.jpg?crop=center&height=460&v=1723649620&width=460"
           alt="Image 7"
-          className="h-auto w-full"
+          className="h-auto w-[80vw] flex-shrink-0 md:w-full"
         />
         <img
           src="https://nakedground.coffee/cdn/shop/files/20240530162143384_1.jpg?crop=center&height=460&v=1723649620&width=460"
           alt="Image 8"
-          className="h-auto w-full"
+          className="h-auto w-[80vw] flex-shrink-0 md:w-full"
         />
       </div>
 
-      <div className="flex w-full flex-col items-center px-24">
+      <div className="flex w-full flex-col items-center md:px-24">
         {/* Dynamic Section */}
-        <div className="mb-4 flex w-full flex-col text-center md:flex-row">
-          {/* Left Section: Image */}
-          <div className="flex items-center justify-center md:w-1/2">
-            <div className="h-0 w-full md:h-auto md:w-auto" style={{ aspectRatio: '1 / 1' }}>
+        <div className="relative w-full text-center md:flex md:flex-row">
+          {/* Mobile Version: Background Image with Text Overlay */}
+          <div
+            className="flex h-[500px] w-full items-center justify-center bg-cover bg-center text-white md:hidden"
+            style={{
+              backgroundImage: `url(${sectionContent[activeSection]?.image})`
+            }}
+          >
+            <div className="flex h-full flex-col justify-center bg-black bg-opacity-60 px-6 sm:p-6">
+              <h2 className="mb-2 text-2xl font-semibold">{activeSection}</h2>
+              <p className="mx-auto w-fit max-w-lg">{sectionContent[activeSection]?.text}</p>
+            </div>
+          </div>
+
+          {/* Desktop Version: Separate Image and Text */}
+          <div className="hidden w-full items-center justify-center md:flex md:w-1/2">
+            <div className="h-0 w-full md:h-auto" style={{ aspectRatio: '1 / 1' }}>
               <img
                 src={sectionContent[activeSection]?.image}
                 alt={`Image for ${activeSection}`}
@@ -117,21 +130,19 @@ Join us at Lords for an unforgettable experience, and savor the perfect cup of c
               />
             </div>
           </div>
-
-          {/* Right Section: Text */}
-          <div className="flex flex-col justify-center p-6 md:w-1/2">
+          <div className="hidden flex-col justify-center p-6 md:flex md:w-1/2">
             <h2 className="mb-2 text-2xl font-semibold">{activeSection}</h2>
             <p className="mx-auto w-fit max-w-lg">{sectionContent[activeSection]?.text}</p>
           </div>
         </div>
 
         {/* Buttons to change the active section */}
-        <div className="flex space-x-2">
+        <div className="mx-2 flex gap-3 sm:space-x-2">
           {Object.keys(sectionContent).map((section) => (
             <button
               key={section}
               onClick={() => setActiveSection(section)}
-              className={`rounded-md px-4 py-2 font-medium transition-colors ${
+              className={`rounded-md py-2 font-medium transition-colors sm:px-4 ${
                 activeSection === section ? 'text-gray-500 underline' : 'text-black'
               }`}
             >
@@ -140,6 +151,7 @@ Join us at Lords for an unforgettable experience, and savor the perfect cup of c
           ))}
         </div>
       </div>
+
       <div className="mx-auto max-w-lg rounded-lg p-6">
         <img
           src="https://nakedground.coffee/cdn/shop/articles/screenshot-2024-08-19-at-11.12.51_42fb9156-07d3-4fdc-b6b3-f184fcc2d426_1131x.png?v=1724071161"
@@ -152,10 +164,9 @@ Join us at Lords for an unforgettable experience, and savor the perfect cup of c
             Curran Brothers: Crushing It On the Field and Brewing Wins Off It
           </h2>
           <p className="mt-3 text-gray-700">
-            How Sam and Tom Curran Are Winning Big in Cricket and Coffee with Naked Ground. The Oval
+            How Sam and Tom Curran Are Winning Big in Cricket and Coffee with Naked Ground The Oval
             Invincibles once again found joy at Lord's, securing back-to-back titles with a 17-run
-            victory over Southern Brave. The game, played under the lights in front of nearly 29,000
-            fans, was a show...
+            victory over...
           </p>
           <button className="mt-4 rounded bg-gray-800 px-4 py-2 text-white hover:bg-gray-700">
             Learn More &rarr;
