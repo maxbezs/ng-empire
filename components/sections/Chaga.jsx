@@ -1,8 +1,8 @@
 const Chaga = () => {
   return (
     <section>
-      <div className="flex flex-col items-center overflow-hidden rounded-3xl bg-white align-middle">
-        <div className="relative h-[700px] w-full overflow-hidden">
+      <div className="flex flex-col items-center overflow-hidden rounded-2xl bg-white align-middle sm:rounded-3xl">
+        <div className="relative h-[250px] w-full overflow-hidden sm:h-[700px]">
           <video
             autoPlay
             loop
@@ -15,10 +15,12 @@ const Chaga = () => {
             />
             Your browser does not support the video tag.
           </video>
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black bg-opacity-50 text-white">
-            <h1 className="text-5xl font-bold">Chaga</h1>
-            <p className="text-2xl">Introducing Siberian Chaga Crystals by Naked Ground</p>
-            <a href="#" className="rounded-full bg-black px-8 py-4 font-bold">
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black bg-opacity-50 p-10 text-center text-white">
+            <h2 className="text-3xl font-bold sm:text-5xl">Chaga</h2>
+            <p className="text-lg sm:text-2xl">
+              Introducing Siberian Chaga Crystals by Naked Ground
+            </p>
+            <a href="#" className="rounded-full bg-black px-6 py-2 font-bold sm:px-8 sm:py-4">
               SHOP NOW
             </a>
           </div>

@@ -15,7 +15,7 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
-      <div className="flex flex-col gap-8 px-24 py-8">
+      <div className="flex flex-col gap-4 px-4 py-4 sm:gap-8 sm:px-24 sm:py-8">
         <CardCarousel />
         <Chaga />
         <LeftImageSection />
