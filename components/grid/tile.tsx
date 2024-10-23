@@ -1,6 +1,6 @@
 import clsx from 'clsx';
+import Price from 'components/price';
 import Image from 'next/image';
-import Label from '../label';
 
 export function GridTileImage({
   isInteractive = true,
@@ -18,32 +18,33 @@ export function GridTileImage({
   };
 } & React.ComponentProps<typeof Image>) {
   return (
-    <div
-      className={clsx(
-        'group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black',
-        {
-          relative: label,
-          'border-2 border-blue-600': active,
-          'border-neutral-200 dark:border-neutral-800': !active
-        }
-      )}
-    >
-      {props.src ? (
-        <Image
-          className={clsx('relative h-full w-full object-contain', {
-            'transition duration-300 ease-in-out group-hover:scale-105': isInteractive
-          })}
-          {...props}
-        />
-      ) : null}
+    <>
+      <div
+        className={clsx(
+          'group flex h-full w-full items-center justify-center overflow-hidden rounded-lg'
+        )}
+      >
+        {props.src ? (
+          <Image
+            className={clsx('relative h-full w-full object-contain', {
+              'transition duration-300 ease-in-out group-hover:scale-105': isInteractive
+            })}
+            width={1000}
+            height={1000}
+            {...props}
+          />
+        ) : null}
+      </div>
       {label ? (
-        <Label
-          title={label.title}
-          amount={label.amount}
-          currencyCode={label.currencyCode}
-          position={label.position}
-        />
+        <div className="relative flex flex-col">
+          <h3 className="mr-4 flex-grow pl-2">{label.title}</h3>
+          <Price
+            className="w-fit flex-none rounded-full font-bold"
+            amount={label.amount}
+            currencyCode={label.currencyCode}
+          />
+        </div>
       ) : null}
-    </div>
+    </>
   );
 }
