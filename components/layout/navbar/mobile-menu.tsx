@@ -3,16 +3,17 @@
 import { Dialog, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { Fragment, Suspense, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Menu } from 'lib/shopify/types';
-import Search, { SearchSkeleton } from './search';
 
 export default function MobileMenu({ menu }: { menu: Menu[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSubmenu, setActiveSubmenu] = useState<number | null>(null); // Track active submenu
+
   const openMobileMenu = () => setIsOpen(true);
   const closeMobileMenu = () => setIsOpen(false);
 
@@ -30,14 +31,37 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
     setIsOpen(false);
   }, [pathname, searchParams]);
 
+  const toggleSubmenu = (index: number) => {
+    setActiveSubmenu(activeSubmenu === index ? null : index);
+  };
+
+  const renderSubmenu = (children: Menu[], index: number) => {
+    return (
+      <ul className={`ml-4 ${activeSubmenu === index ? 'block' : 'hidden'}`}>
+        {children.map((subItem) => {
+          const updatedSubUrl = subItem.path.replace(
+            'https://rouge-technologies.myshopify.com',
+            process.env.NEXT_PUBLIC_LOCAL_STORE_URL || ''
+          );
+          return (
+            <li key={subItem.title} className="py-2 text-lg hover:text-neutral-300">
+              <Link href={updatedSubUrl} onClick={closeMobileMenu}>
+                {subItem.title}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
   return (
     <>
       <button
         onClick={openMobileMenu}
         aria-label="Open mobile menu"
-        className="flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors md:hidden dark:border-neutral-700 dark:text-white"
+        className="flex h-11 w-11 items-center justify-center text-white md:hidden"
       >
-        <Bars3Icon className="h-4" />
+        <Bars3Icon className="h-8" />
       </button>
       <Transition show={isOpen}>
         <Dialog onClose={closeMobileMenu} className="relative z-50">
@@ -61,33 +85,57 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-[-100%]"
           >
-            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-white pb-6 dark:bg-black">
+            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-[#92d4ee] pb-6">
               <div className="p-4">
                 <button
-                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white"
+                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors"
                   onClick={closeMobileMenu}
                   aria-label="Close mobile menu"
                 >
                   <XMarkIcon className="h-6" />
                 </button>
 
-                <div className="mb-4 w-full">
+                {/*<div className="mb-4 w-full">
                   <Suspense fallback={<SearchSkeleton />}>
                     <Search />
                   </Suspense>
-                </div>
+                </div>*/}
                 {menu.length ? (
-                  <ul className="flex w-full flex-col">
-                    {menu.map((item: Menu) => (
-                      <li
-                        className="py-2 text-xl text-black transition-colors hover:text-neutral-500 dark:text-white"
-                        key={item.title}
-                      >
-                        <Link href={item.path} prefetch={true} onClick={closeMobileMenu}>
-                          {item.title}
-                        </Link>
-                      </li>
-                    ))}
+                  <ul className="flex w-full flex-col text-white">
+                    {menu.map((item: Menu, index: number) => {
+                      let updatedUrl = item.path.replace(
+                        'https://rouge-technologies.myshopify.com',
+                        process.env.NEXT_PUBLIC_LOCAL_STORE_URL || ''
+                      );
+
+                      return (
+                        <li className="py-2 text-xl" key={item.title}>
+                          <div className="flex justify-between">
+                            <Link
+                              href={updatedUrl}
+                              onClick={closeMobileMenu}
+                              className="hover:text-neutral-300"
+                            >
+                              {item.title}
+                            </Link>
+                            {item.items && item.items.length > 0 && (
+                              <button
+                                onClick={() => toggleSubmenu(index)}
+                                aria-label={`Toggle submenu for ${item.title}`}
+                                className="ml-2"
+                              >
+                                <ChevronDownIcon
+                                  className={`h-4 w-4 transform ${
+                                    activeSubmenu === index ? 'rotate-180' : ''
+                                  }`}
+                                />
+                              </button>
+                            )}
+                          </div>
+                          {item.items && item.items.length > 0 && renderSubmenu(item.items, index)}
+                        </li>
+                      );
+                    })}
                   </ul>
                 ) : null}
               </div>

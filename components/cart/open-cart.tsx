@@ -11,11 +11,11 @@ export default function OpenCart({
   return (
     <div className="relative flex h-11 w-11 items-center justify-center text-white">
       <ShoppingCartIcon
-        className={clsx('h-6 transition-all ease-in-out hover:scale-110', className)}
+        className={clsx('h-8 transition-all ease-in-out hover:scale-110', className)}
       />
 
       {quantity ? (
-        <div className="absolute right-0 top-0 -mr-2 -mt-2 h-4 w-4 rounded bg-[#92d4ee] text-[11px] font-medium text-white">
+        <div className="absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded bg-white text-sm font-medium text-black">
           {quantity}
         </div>
       ) : null}

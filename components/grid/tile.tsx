@@ -20,15 +20,16 @@ export function GridTileImage({
   return (
     <div
       className={clsx(
-        'group flex h-fit w-full flex-col items-center justify-center rounded-lg bg-white',
+        'group flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg',
         {
+          relative: label,
           'border-neutral-200': !active
         }
       )}
     >
       {props.src ? (
         <Image
-          className={clsx('aspect-square w-full object-fill', {
+          className={clsx('relative w-full object-contain', {
             'transition duration-300 ease-in-out group-hover:scale-105': isInteractive
           })}
           width={props.width || 800}

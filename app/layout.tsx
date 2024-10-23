@@ -35,7 +35,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 
   return (
     <html lang="en" className={GeistSans.variable}>
-      <body className="bg-[#f7f3e9] text-black selection:bg-teal-300 dark:selection:bg-pink-500 dark:selection:text-white">
+      <body className="bg-[#f7f3e9] text-black selection:bg-teal-300">
         <CartProvider cartPromise={cart}>
           <section className="border-b border-[#e6e6e6] bg-[#f7f3e9] text-[#000000]">
             <div className="flex items-center justify-between px-4 py-2">
