@@ -104,7 +104,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                   <ul className="flex w-full flex-col text-white">
                     {menu.map((item: Menu, index: number) => {
                       let updatedUrl = item.path.replace(
-                        'https://rouge-technologies.myshopify.com',
+                        'https://nakedground.coffee',
                         process.env.NEXT_PUBLIC_LOCAL_STORE_URL || ''
                       );
 

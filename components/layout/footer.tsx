@@ -46,14 +46,17 @@ export default async function Footer() {
   return (
     <footer className="text-sm text-black">
       <div className="mx-auto flex w-full flex-col gap-6 border-t border-[#92D4EE] px-6 py-12 text-sm md:flex-row md:gap-12 md:px-24">
-        <div className="flex flex-col gap-2">
-          <Link className="flex flex-col items-start gap-2 text-black md:pt-1" href="/">
+        <div className="flex flex-col justify-center gap-2">
+          <Link
+            className="flex flex-col items-center justify-center gap-2 text-black sm:items-start sm:justify-start md:pt-1"
+            href="/"
+          >
             <div className="rounded-full bg-[#92D4EE] p-4">
               <LogoSquare size="sm" />
             </div>
           </Link>
-          <div className="flex flex-col">
-            <span className="uppercase">{SITE_NAME}</span>
+          <div className="flex flex-col text-center sm:text-start">
+            <span className="text-center uppercase sm:text-start">{SITE_NAME}</span>
             <span className="font-bold">Más que café</span>
           </div>
 

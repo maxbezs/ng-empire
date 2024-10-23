@@ -1,6 +1,6 @@
 const SocialLinks = () => {
   return (
-    <ul className="flex gap-2 p-2">
+    <ul className="mx-auto flex gap-2 p-2 sm:mx-0">
       <li className="h-10 w-10">
         <a
           href="https://www.instagram.com/nakedground/"

@@ -1,6 +1,9 @@
 const PaymentsList = () => {
   return (
-    <ul aria-label="Payment methods" className="mx-auto flex w-fit flex-wrap gap-2 py-4">
+    <ul
+      aria-label="Payment methods"
+      className="mx-auto flex w-fit flex-wrap gap-2 px-8 py-4 sm:px-0"
+    >
       <li>
         <svg
           role="img"

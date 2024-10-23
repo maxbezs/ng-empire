@@ -32,6 +32,46 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
           <ChildrenWrapper>{children}</ChildrenWrapper>
         </div>
       </div>
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 gap-4 text-center md:grid-cols-3">
+          <div className="rounded-lg p-4">
+            <img
+              src="https://nakedground.coffee/cdn/shop/files/Untitled_design_copy_2_108x.png?v=1724335043"
+              alt="Balearic"
+              className="mx-auto mb-2 h-16"
+            />
+            <h2 className="text-lg font-bold">BALEARIC</h2>
+            <p className="mt-2 text-sm">
+              100% Arabica - Latin American mix - Medium dark roast - Caramel and Dark Chocolate - A
+              taste of the Balearics
+            </p>
+          </div>
+          <div className="rounded-lg p-4">
+            <img
+              src="https://nakedground.coffee/cdn/shop/files/Untitled_design_db1aa806-445a-42c3-9f48-801bf5f4f7aa_108x.png?v=1724334690"
+              alt="Londres"
+              className="mx-auto mb-2 h-16"
+            />
+            <h2 className="text-lg font-bold">LONDRES</h2>
+            <p className="mt-2 text-sm">
+              A smooth mix of Arabica and Robusta - Multi-origin - Cocoa and Toffee - Inspired by
+              London. Punchy yet balanced.
+            </p>
+          </div>
+          <div className="rounded-lg p-4">
+            <img
+              src="https://nakedground.coffee/cdn/shop/files/Untitled_design_copy_108x.png?v=1724335022"
+              alt="Brasília"
+              className="mx-auto mb-2 h-16"
+            />
+            <h2 className="text-lg font-bold">BRASÍLIA</h2>
+            <p className="mt-2 text-sm">
+              Medium roast - Made from 100% Arabica beans - Single origin from Brazil - Suits all
+              brew methods - An absolute must-try for any drip filter lovers.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
