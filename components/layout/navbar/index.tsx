@@ -29,9 +29,9 @@ const shopMenu = [
     title: 'Store',
     path: 'https://nakedground.coffee/search/all',
     items: [
-      { title: 'COFFEE', path: 'https://nakedground.coffee/search/coffee', items: [] },
-      { title: 'MERCHANDISE', path: 'https://nakedground.coffee/search/merchandise', items: [] },
-      { title: 'MÁS QUE CAFÉ', path: 'https://nakedground.coffee/mas-que-cafe', items: [] }
+      { title: 'COFFEE', path: '/collections/coffee', items: [] },
+      { title: 'MERCHANDISE', path: '/collections/merchandise', items: [] },
+      { title: 'MÁS QUE CAFÉ', path: '/collections/mas-que-cafe', items: [] }
     ]
   },
   { title: 'Our story', path: 'https://nakedground.coffee/our-story', items: [] },
