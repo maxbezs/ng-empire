@@ -96,7 +96,7 @@ const ContactUs = () => {
             </div>
             <button
               type="submit"
-              className="w-full rounded-md bg-blue-600 px-4 py-2 font-semibold text-white shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-md bg-[#92d4ee] px-4 py-2 font-semibold text-white shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               Submit
             </button>
@@ -110,15 +110,15 @@ const ContactUs = () => {
             </p>
             <div className="space-y-2">
               <div className="flex items-center">
-                <span className="material-icons mr-2 text-blue-600">Location</span>
+                <span className="material-icons mr-2 text-[#92d4ee]">Location</span>
                 <p>123 Fitness St, Workout City, CA 12345</p>
               </div>
               <div className="flex items-center">
-                <span className="material-icons mr-2 text-blue-600">Phone</span>
+                <span className="material-icons mr-2 text-[#92d4ee]">Phone</span>
                 <p>+1 (555) 123-4567</p>
               </div>
               <div className="flex items-center">
-                <span className="material-icons mr-2 text-blue-600">Email</span>
+                <span className="material-icons mr-2 text-[#92d4ee]">Email</span>
                 <p>contact@gymwebsite.com</p>
               </div>
             </div>
@@ -127,7 +127,7 @@ const ContactUs = () => {
             <div className="mt-4 flex space-x-4">
               <a
                 href="https://facebook.com"
-                className="text-blue-600 hover:text-blue-800"
+                className="text-[#92d4ee] hover:text-blue-800"
                 aria-label="Facebook"
               >
                 <span className="material-icons">facebook</span>
@@ -141,7 +141,7 @@ const ContactUs = () => {
               </a>
               <a
                 href="https://twitter.com"
-                className="text-blue-400 hover:text-blue-600"
+                className="text-blue-400 hover:text-[#92d4ee]"
                 aria-label="Twitter"
               >
                 <span className="material-icons">twitter</span>

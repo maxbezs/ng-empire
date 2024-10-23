@@ -211,7 +211,7 @@ const Timetable = () => {
                   <p className="mb-2 text-sm">👤 {classInfo.instructor}</p>
                   <p className="text-sm text-green-400">{classInfo.status}</p>
                   <div className="mt-2 flex items-center">
-                    <button className="rounded-md bg-blue-600 px-3 py-1 text-white transition hover:bg-blue-700">
+                    <button className="rounded-md bg-[#92d4ee] px-3 py-1 text-white transition hover:bg-blue-700">
                       {classInfo.details ? 'VIEW DETAIL' : 'BOOK NOW'}
                     </button>
                     <div className="ml-auto text-blue-400">

@@ -19,7 +19,7 @@ export function WelcomeToast() {
             This is a high-performance, SSR storefront powered by Shopify, Next.js, and Vercel.
             <a
               href="https://vercel.com/templates/next.js/nextjs-commerce"
-              className="text-blue-600 hover:underline"
+              className="text-[#92d4ee] hover:underline"
               target="_blank"
             >
               Deploy your own

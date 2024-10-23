@@ -11,7 +11,6 @@ const page = () => {
       <Features />
       <JoinUs />
       <Locations />
-      <Footer />
       <Link href={'/gym/legal'} className="rounded-md bg-blue-400 px-6 py-2">
         Legal
       </Link>

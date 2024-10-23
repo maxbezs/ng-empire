@@ -9,20 +9,16 @@ export function ProductDescription({ product }: { product: Product }) {
     <>
       <div className="mb-6 flex flex-col border-b pb-6">
         <h1 className="mb-2 text-5xl font-medium">{product.title}</h1>
-        <div className="mr-auto w-auto rounded-full bg-blue-600 p-2 text-sm text-white">
+        <div className="mr-auto w-auto rounded-full bg-[#92d4ee] p-2 text-sm text-white">
           <Price
             amount={product.priceRange.maxVariantPrice.amount}
             currencyCode={product.priceRange.maxVariantPrice.currencyCode}
           />
         </div>
+        <p className="py-4"> Tax included</p>
       </div>
       <VariantSelector options={product.options} variants={product.variants} />
-      {product.descriptionHtml ? (
-        <Prose
-          className="mb-6"
-          html={product.descriptionHtml}
-        />
-      ) : null}
+      {product.descriptionHtml ? <Prose className="mb-6" html={product.descriptionHtml} /> : null}
       <AddToCart product={product} />
     </>
   );
