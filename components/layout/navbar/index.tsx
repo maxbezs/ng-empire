@@ -27,7 +27,7 @@ const gymMenu = [
 const shopMenu = [
   {
     title: 'Store',
-    path: 'https://nakedground.coffee/search/all',
+    path: '/collections',
     items: [
       { title: 'COFFEE', path: '/collections/coffee', items: [] },
       { title: 'MERCHANDISE', path: '/collections/merchandise', items: [] },

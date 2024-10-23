@@ -45,7 +45,7 @@ const page = () => {
             </div>
           </div>
         </Link>
-        <Link href="/somos-cafe">
+        <Link href="/collections/coffee">
           <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-blue-200">
             <Image
               src="https://nakedground.coffee/cdn/shop/collections/Screenshot_5_x585.png?v=1724684585"
