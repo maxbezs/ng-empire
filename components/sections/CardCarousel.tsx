@@ -30,9 +30,9 @@ const CardCarousel: React.FC<CardCarouselProps> = ({
   const sliderRef = useRef<Slider | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const totalSlides = cardData.length;
-
+  console.log(totalSlides);
   const defaultSettings: SliderSettings = {
-    dots: false,
+    dots: true,
     infinite: false,
     speed: 500,
     slidesToShow: 1,

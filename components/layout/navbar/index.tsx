@@ -69,7 +69,7 @@ export function Navbar() {
   };
 
   return (
-    <nav className="relative flex items-center justify-between bg-[#92d4ee] p-4 lg:px-24">
+    <nav className="sticky top-0 z-50 flex items-center justify-between bg-[#92d4ee] p-4 lg:px-24">
       {/* Mobile Menu - Visible only on small screens */}
       <div className="block flex-none md:hidden">
         <Suspense fallback={null}>

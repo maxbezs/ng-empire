@@ -30,13 +30,13 @@ const teamMembers = [
 
 const TeamSlider = () => {
   const settings = {
-    dots: true,
-    infinite: false, // Disable infinite scrolling
+    dots: false,
+    infinite: false,
     speed: 500,
-    slidesToShow: 1, // Show 2 slides at once
-    slidesToScroll: 1, // Scroll one slide at a time
-    centerMode: true, // Enable center mode
-    centerPadding: '50px', // Space on the sides
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: '50px',
     swipeToSlide: true
   };
 

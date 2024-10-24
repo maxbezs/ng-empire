@@ -26,12 +26,7 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
       price: 133
     }
   ];
-  const mySettings = {
-    dots: true,
-    infinite: cardData.length > 1, // Make infinite scroll conditional based on card count
-    slidesToShow: Math.min(3, cardData.length), // Show up to 3 cards, but no more than available
-    slidesToScroll: 1
-  };
+
   return (
     <div className="mx-4 my-4 flex flex-col gap-8 sm:mx-24 sm:my-8">
       <section>
@@ -63,7 +58,7 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
         </div>
       </section>
       <div className="sm:mx-auto sm:max-w-7xl">
-        <CardCarousel cardData={cardData} sliderSettings={mySettings} />
+        <CardCarousel cardData={cardData} />
       </div>
       <h1 className="text-4xl font-bold">Mas Que Cafe.</h1>
       <div className="flex flex-col gap-8 text-black md:flex-row">

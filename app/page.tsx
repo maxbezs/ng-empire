@@ -41,9 +41,9 @@ const cardData = [
   }
 ];
 const mySettings = {
-  dots: true,
-  infinite: cardData.length > 1, // Make infinite scroll conditional based on card count
-  slidesToShow: Math.min(3, cardData.length), // Show up to 3 cards, but no more than available
+  dots: false,
+  infinite: false, // Make infinite scroll conditional based on card count
+  slidesToShow: Math.min(1, cardData.length), // Show up to 3 cards, but no more than available
   slidesToScroll: 1
 };
 export default function HomePage() {
