@@ -1,6 +1,6 @@
 'use client';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Slider, { Settings as SliderSettings } from 'react-slick';
 
 interface Card {
@@ -30,19 +30,52 @@ const CardCarousel: React.FC<CardCarouselProps> = ({
   const sliderRef = useRef<Slider | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const totalSlides = cardData.length;
-  console.log(totalSlides);
+
   const defaultSettings: SliderSettings = {
-    dots: true,
+    dots: false,
     infinite: false,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1,
+    slidesToScroll: 1, // Ensure it's set to 1
     adaptiveHeight: true,
     arrows: false,
-    afterChange: (current) => setCurrentSlide(current)
+    afterChange: (current) => {
+      setCurrentSlide(current);
+      console.log(`Slide changed to: ${current}`);
+    }
   };
 
+  useEffect(() => {
+    console.log(`Current slide: ${currentSlide}`);
+  }, [currentSlide]);
+
   const settings = { ...defaultSettings, ...sliderSettings };
+
+  useEffect(() => {
+    console.log('CardCarousel mounted');
+    console.log(`Total slides: ${totalSlides}`);
+    return () => {
+      console.log('CardCarousel unmounted');
+    };
+  }, [totalSlides]);
+
+  const handlePrev = () => {
+    if (sliderRef.current && currentSlide > 0) {
+      const newSlide = currentSlide - 1;
+      sliderRef.current.slickGoTo(newSlide);
+      setCurrentSlide(newSlide);
+      console.log('Previous button clicked');
+    }
+  };
+
+  const handleNext = () => {
+    if (sliderRef.current && currentSlide < totalSlides - 1) {
+      const newSlide = currentSlide + 1;
+      sliderRef.current.slickGoTo(newSlide);
+      setCurrentSlide(newSlide);
+      console.log('Next button clicked');
+    }
+  };
 
   return (
     <div className="relative">
@@ -80,7 +113,6 @@ const CardCarousel: React.FC<CardCarouselProps> = ({
           ))}
         </Slider>
       </div>
-
       {/* Desktop View: All Cards in Row */}
       <div className="mx-auto hidden max-w-full md:flex md:justify-center md:gap-10">
         {cardData.map((card) => (
@@ -115,24 +147,27 @@ const CardCarousel: React.FC<CardCarouselProps> = ({
           </div>
         ))}
       </div>
-
-      {/* Navigation Arrows */}
-      <button
-        onClick={() => sliderRef.current?.slickPrev()}
-        className={`absolute left-0 top-1/2 z-10 -ml-2 h-12 w-12 -translate-y-1/2 transform rounded-full bg-[#92d4ee] p-2 text-white shadow-md md:hidden ${
-          currentSlide === 0 ? 'hidden' : 'block'
-        }`}
-      >
-        <ChevronLeftIcon className="h-5 w-full" />
-      </button>
-      <button
-        onClick={() => sliderRef.current?.slickNext()}
-        className={`absolute right-0 top-1/2 z-10 -mr-2 h-12 w-12 -translate-y-1/2 transform rounded-full bg-[#92d4ee] p-2 text-white shadow-md md:hidden ${
-          currentSlide === totalSlides - 1 ? 'hidden' : 'block'
-        }`}
-      >
-        <ChevronRightIcon className="h-5 w-full" />
-      </button>
+      {totalSlides > 1 && (
+        <>
+          <button
+            onClick={handlePrev}
+            className={`absolute left-0 top-1/2 z-10 -ml-2 h-12 w-12 -translate-y-1/2 transform rounded-full bg-[#92d4ee] p-2 text-white shadow-md md:hidden ${
+              currentSlide === 0 ? 'hidden' : 'block'
+            }`}
+          >
+            <ChevronLeftIcon className="h-5 w-full" />
+          </button>
+          <button
+            onClick={handleNext}
+            className={`absolute right-0 top-1/2 z-10 -mr-2 h-12 w-12 -translate-y-1/2 transform rounded-full bg-[#92d4ee] p-2 text-white shadow-md md:hidden ${
+              currentSlide === totalSlides - 1 ? 'hidden' : 'block'
+            }`}
+          >
+            <ChevronRightIcon className="h-5 w-full" />
+          </button>
+          {console.log('Current Slide:', currentSlide, 'Total Slides:', totalSlides)}
+        </>
+      )}
     </div>
   );
 };
