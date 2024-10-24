@@ -21,7 +21,7 @@ export function FooterMenuItem({ item }: { item: Menu }) {
         className={clsx(
           'block p-2 text-lg underline-offset-4 hover:text-[#92D4EE] hover:underline md:inline-block md:text-sm',
           {
-            'text-black dark:text-neutral-300': active
+            'text-black': active
           }
         )}
       >

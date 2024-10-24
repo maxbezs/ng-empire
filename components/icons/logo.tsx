@@ -6,7 +6,7 @@ export default function LogoIcon(props: any) {
     <div
       aria-label={`Naked Ground logo`}
       {...props}
-      className={clsx('fill-black dark:fill-white', props.className)}
+      className={clsx('fill-black', props.className)}
     >
       <Image
         src={'https://cdn.shopify.com/s/files/1/0785/0233/0701/files/white-wink.png?v=1725632191'}
