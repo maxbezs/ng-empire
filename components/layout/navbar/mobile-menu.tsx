@@ -5,14 +5,14 @@ import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
 
-import { Bars3Icon, ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Menu } from 'lib/shopify/types';
 
 export default function MobileMenu({ menu }: { menu: Menu[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState<number | null>(null); // Track active submenu
+  const [activeSubmenu, setActiveSubmenu] = useState<number | null>(0); // Track active submenu
 
   const openMobileMenu = () => setIsOpen(true);
   const closeMobileMenu = () => setIsOpen(false);
@@ -118,7 +118,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                             >
                               {item.title}
                             </Link>
-                            {item.items && item.items.length > 0 && (
+                            {/*item.items && item.items.length > 0 && (
                               <button
                                 onClick={() => toggleSubmenu(index)}
                                 aria-label={`Toggle submenu for ${item.title}`}
@@ -130,7 +130,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                                   }`}
                                 />
                               </button>
-                            )}
+                            )*/}
                           </div>
                           {item.items && item.items.length > 0 && renderSubmenu(item.items, index)}
                         </li>

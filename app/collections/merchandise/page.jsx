@@ -21,10 +21,10 @@ const page = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
-        <div className="relative mx-auto w-full max-w-6xl">
+        <div className="relative w-full max-w-6xl p-4 sm:mx-auto sm:p-0">
           <h2 className="font-bold uppercase text-white">Mercancia.</h2>
           <div className="flex w-full items-end justify-end align-middle">
-            <div className="flex flex-col gap-2 rounded bg-white p-6">
+            <div className="flex flex-col gap-2 rounded bg-white p-4 sm:p-6">
               <Image
                 src={
                   'https://nakedground.coffee/cdn/shop/files/Screenshot2024-08-08at14.23.59_414x.png?v=1723123483'
@@ -56,10 +56,10 @@ const page = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
-        <div className="relative mx-auto w-full max-w-6xl">
+        <div className="relative w-full max-w-6xl p-4 sm:mx-auto sm:p-0">
           <h2 className="font-bold uppercase text-white">Luxury Naked Ground Towel</h2>
           <div className="flex w-full items-end justify-end align-middle">
-            <div className="flex flex-col gap-2 rounded bg-white p-6">
+            <div className="flex flex-col gap-2 rounded bg-white p-4 sm:p-6">
               <Image
                 src={
                   'https://nakedground.coffee/cdn/shop/files/Screenshot2024-08-08at14.20.43_414x.png?v=1724271966'
