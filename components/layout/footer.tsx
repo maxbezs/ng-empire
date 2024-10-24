@@ -36,7 +36,7 @@ const shopMenu = [
   { title: 'Events', path: 'https://nakedground.coffee/events', items: [] },
   { title: 'Health Club', path: 'https://nakedground.coffee/gym', items: [] }
 ];
-export default async function Footer() {
+export default function Footer() {
   const currentYear = new Date().getFullYear();
   const copyrightDate = 2023 + (currentYear > 2023 ? `-${currentYear}` : '');
   const skeleton = 'w-full h-6 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700';

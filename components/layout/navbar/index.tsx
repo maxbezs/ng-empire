@@ -39,7 +39,7 @@ const shopMenu = [
   { title: 'Events', path: 'https://nakedground.coffee/events', items: [] },
   { title: 'Health Club', path: 'https://nakedground.coffee/gym', items: [] }
 ];
-export async function Navbar() {
+export function Navbar() {
   const pathname = usePathname(); // Get the current path
 
   // Check if the current path starts with /gym
