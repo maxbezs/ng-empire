@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export function FooterMenuItem({ item }: { item: Menu }) {
+export function FooterMenuItem({ item, isSubmenu = false }: { item: Menu; isSubmenu?: boolean }) {
   const pathname = usePathname();
   const [active, setActive] = useState(pathname === item.path);
 
@@ -19,14 +19,24 @@ export function FooterMenuItem({ item }: { item: Menu }) {
       <Link
         href={item.path}
         className={clsx(
-          'block p-2 text-lg underline-offset-4 hover:text-[#92D4EE] hover:underline md:inline-block md:text-sm',
+          'block p-2 text-lg underline-offset-4 hover:text-black hover:underline md:inline-block',
           {
-            'text-black': active
+            'font-bold md:text-base': !isSubmenu,
+            '': active,
+            'ml-1 md:text-sm': isSubmenu
           }
         )}
       >
         {item.title}
       </Link>
+
+      {Array.isArray(item.items) && item.items.length > 0 && (
+        <ul className="ml-1">
+          {item.items.map((child) => (
+            <FooterMenuItem key={child.title} item={child} isSubmenu />
+          ))}
+        </ul>
+      )}
     </li>
   );
 }
@@ -36,7 +46,7 @@ export default function FooterMenu({ menu }: { menu: Menu[] }) {
 
   return (
     <nav>
-      <ul>
+      <ul className="grid sm:grid-cols-5">
         {menu.map((item: Menu) => {
           return <FooterMenuItem key={item.title} item={item} />;
         })}

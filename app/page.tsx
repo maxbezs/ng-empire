@@ -56,7 +56,7 @@ export default function HomePage() {
         <Section />
         <BundleDeal />
         <Matcha />
-        <CardCarousel />
+        <CardCarousel cardData={cardData} sliderSettings={mySettings} />
       </div>
     </>
   );
