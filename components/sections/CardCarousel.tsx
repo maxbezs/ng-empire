@@ -82,7 +82,7 @@ const CardCarousel: React.FC<CardCarouselProps> = ({
       </div>
 
       {/* Desktop View: All Cards in Row */}
-      <div className="mx-auto hidden max-w-full px-[500px] md:flex md:justify-center md:gap-10">
+      <div className="mx-auto hidden max-w-full md:flex md:justify-center md:gap-10">
         {cardData.map((card) => (
           <div
             key={card.id}
