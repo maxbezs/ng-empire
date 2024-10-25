@@ -1,3 +1,4 @@
+import Ticker from 'components/Ticker';
 import Image from 'next/image';
 
 const page = () => {
@@ -8,6 +9,16 @@ const page = () => {
     'https://nakedground.coffee/cdn/shop/files/20240807150153163_336x336_crop_center.jpg?v=1723056491',
     'https://nakedground.coffee/cdn/shop/files/20240807150116317_336x336_crop_center.jpg?v=1723056491',
     'https://nakedground.coffee/cdn/shop/files/20240807154054803_336x336_crop_center.jpg?v=1723056491'
+  ];
+  const content = [
+    'YOUR POSITIVE DAILY HABIT',
+    'MÁS QUE CAFÉ',
+    'NEW MINDS, NEW CHOICES',
+    'YOUR POSITIVE DAILY HABIT',
+    'MÁS QUE CAFÉ',
+    'NEW MINDS, NEW CHOICES',
+    'YOUR POSITIVE DAILY HABIT',
+    'MÁS QUE CAFÉ'
   ];
   return (
     <div>
@@ -45,7 +56,8 @@ const page = () => {
           <img key={index} src={src} alt={`Gallery image ${index + 1}`} className="h-auto w-full" />
         ))}
       </div>
-      <div className="h-28 bg-[#92d4ee]"></div>
+      <Ticker content={content} color={'white'} background={'bg-[#92d4ee]'} />
+
       <div
         className="relative w-full bg-cover bg-center py-8"
         style={{

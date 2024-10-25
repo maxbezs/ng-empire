@@ -4,6 +4,7 @@ import Chaga from 'components/sections/Chaga';
 import LeftImageSection from 'components/sections/LeftImageSection';
 import Matcha from 'components/sections/Matcha';
 import Section from 'components/sections/Section';
+import Ticker from 'components/Ticker';
 
 export const metadata = {
   description: 'High-performance ecommerce store built with Next.js, Vercel, and Shopify.',
@@ -46,6 +47,16 @@ const mySettings = {
   slidesToShow: Math.min(1, cardData.length), // Show up to 3 cards, but no more than available
   slidesToScroll: 1
 };
+const content = [
+  'YOUR POSITIVE DAILY HABIT',
+  'MÁS QUE CAFÉ',
+  'NEW MINDS, NEW CHOICES',
+  'YOUR POSITIVE DAILY HABIT',
+  'MÁS QUE CAFÉ',
+  'NEW MINDS, NEW CHOICES',
+  'YOUR POSITIVE DAILY HABIT',
+  'MÁS QUE CAFÉ'
+];
 export default function HomePage() {
   return (
     <>
@@ -58,6 +69,7 @@ export default function HomePage() {
         <Matcha />
         <CardCarousel cardData={cardData} sliderSettings={mySettings} />
       </div>
+      <Ticker content={content} color={'[#92d4ee]'} background={'bg-none'} />
     </>
   );
 }
