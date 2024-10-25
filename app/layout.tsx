@@ -37,29 +37,12 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
     <html lang="en" className={GeistSans.variable}>
       <body className="bg-[#f7f3e9] text-black selection:bg-teal-300">
         <CartProvider cartPromise={cart}>
-          <section className="border-b border-[#e6e6e6] bg-[#f7f3e9] text-[#000000]">
-            <div className="flex items-center justify-between px-4 py-2">
-              <div className="w-full overflow-hidden">
-                <div className="mx-auto flex w-fit space-x-8">
-                  <div className="font-bold">
-                    <p>F R E E - S H I P P I N G</p>
-                  </div>
-                </div>
-              </div>
-              <button
-                className="ml-4 text-[#000000] hover:text-[#757575]"
-                aria-label="Close announcement bar"
-                type="button"
-              >
-                ×
-              </button>
-            </div>
-          </section>
           <Navbar />
           <main>
             {children}
             <Toaster closeButton />
-            <WelcomeToast /> <WhatsappButton />
+            <WelcomeToast />
+            <WhatsappButton />
           </main>
           <Footer />
         </CartProvider>

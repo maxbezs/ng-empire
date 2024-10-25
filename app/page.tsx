@@ -20,6 +20,7 @@ const cardData = [
       'https://cdn.shopify.com/s/files/1/0785/0233/0701/files/Untitled_design_1_copy_9.png?v=1725299950',
     overlayText: 'Baleric Beans',
     description: '250g Balearic Beans',
+    url: '/product/12-pack-of-pods',
     price: 58
   },
   {
@@ -29,6 +30,7 @@ const cardData = [
       'https://cdn.shopify.com/s/files/1/0785/0233/0701/files/Untitled_design_1_copy_9.png?v=1725299950',
     overlayText: 'Londres Beans',
     description: '250g Londres Beans',
+    url: '/product/2-bags',
     price: 53
   },
   {
@@ -38,7 +40,28 @@ const cardData = [
       'https://cdn.shopify.com/s/files/1/0785/0233/0701/files/Untitled_design_1_copy_9.png?v=1725299950',
     overlayText: 'Brasilia Beans',
     description: '250g Brasilia Beans',
+    url: '/product/250g-brasilia-beans',
     price: 64
+  }
+];
+const cardData2 = [
+  {
+    id: 1,
+    imageUrl: 'https://nakedground.coffee/cdn/shop/files/Screenshot2024-08-08at14.23.59.png',
+    hoverImageUrl: 'https://nakedground.coffee/cdn/shop/files/IMG_4230.jpg',
+    overlayText: '',
+    description: 'Limited Edition Baseball Cap',
+    url: '/product/limited-edition-baseball-cap',
+    price: 24.95
+  },
+  {
+    id: 2,
+    imageUrl: 'https://nakedground.coffee/cdn/shop/files/Screenshot2024-08-08at14.20.43.png',
+    hoverImageUrl: 'https://nakedground.coffee/cdn/shop/files/Screenshot2024-08-08at14.20.43.png',
+    overlayText: '',
+    description: 'Large Luxury Cotton  Beach Towel',
+    url: '/product/naked-ground-beach-towel',
+    price: 124.95
   }
 ];
 const mySettings = {
@@ -67,7 +90,9 @@ export default function HomePage() {
         <Section />
         <BundleDeal />
         <Matcha />
-        <CardCarousel cardData={cardData} sliderSettings={mySettings} />
+        <div className="max-w-6xl">
+          <CardCarousel cardData={cardData2} sliderSettings={mySettings} />
+        </div>
       </div>
       <Ticker content={content} color={'[#92d4ee]'} background={'bg-none'} />
     </>

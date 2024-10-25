@@ -69,74 +69,87 @@ export function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 flex items-center justify-between bg-[#92d4ee] p-4 lg:px-24">
-      {/* Mobile Menu - Visible only on small screens */}
-      <div className="block flex-none md:hidden">
-        <Suspense fallback={null}>
-          <MobileMenu menu={menu} />
-        </Suspense>
-      </div>
-
-      <div className="flex w-full items-center">
-        {/* Left section - Links */}
-        <div className="hidden w-1/3 md:flex">
-          {menu.length ? (
-            <ul className="hidden gap-6 md:flex md:items-center">
-              {menu.map((item: Menu) => {
-                let updatedUrl = item.path.replace(
-                  'https://nakedground.coffee',
-                  'https://ng-empire.vercel.app'
-                );
-
-                return (
-                  <li key={item.title} className="group relative">
-                    <Link
-                      href={updatedUrl}
-                      prefetch={true}
-                      className="flex items-center text-white underline-offset-4 hover:underline"
-                    >
-                      {item.title}
-                      {item.items && item.items.length > 0 && (
-                        <ChevronDownIcon className="ml-1 h-4 w-4 text-white" />
-                      )}
-                    </Link>
-                    {item.items && item.items.length > 0 && renderSubmenu(item.items)}
-                  </li>
-                );
-              })}
-            </ul>
-          ) : null}
-        </div>
-
-        {/* Center section - Logo */}
-        <div className="flex w-full justify-center md:w-1/3">
-          <Link href="/" prefetch={true} className="flex items-center justify-center">
-            <LogoSquare />
-          </Link>
-        </div>
-
-        {/* Right section - Conditional rendering based on route */}
-        <div className="flex w-1/3 items-center justify-end">
-          {isGymPage ? (
-            // Gym-specific right section (Account)
-            <div className="flex items-center text-white">
-              <Link href="/gym/account" className="text-white hover:underline">
-                Account
-              </Link>
-            </div>
-          ) : (
-            // Default right section (Search and Cart)
-            <div className="flex items-center">
-              <div className="hidden md:flex">
-                <Suspense fallback={<SearchSkeleton />}>
-                  <Search />
-                </Suspense>
+    <div className="sticky top-0 z-50">
+      <section className="border-b border-[#e6e6e6] bg-[#f7f3e9] text-[#000000]">
+        <div className="flex items-center justify-between px-4 py-2">
+          <div className="w-full overflow-hidden">
+            <div className="mx-auto flex w-fit space-x-8">
+              <div className="font-bold">
+                <p>F R E E - S H I P P I N G</p>
               </div>
-              <CartModal />
             </div>
-          )}
+          </div>
         </div>
-      </div>
-    </nav>
+      </section>
+      <nav className="relative flex items-center justify-between bg-[#92d4ee] p-4 lg:px-24">
+        {/* Mobile Menu - Visible only on small screens */}
+        <div className="block flex-none md:hidden">
+          <Suspense fallback={null}>
+            <MobileMenu menu={menu} />
+          </Suspense>
+        </div>
+
+        <div className="flex w-full items-center">
+          {/* Left section - Links */}
+          <div className="hidden w-1/3 md:flex">
+            {menu.length ? (
+              <ul className="hidden gap-6 md:flex md:items-center">
+                {menu.map((item: Menu) => {
+                  let updatedUrl = item.path.replace(
+                    'https://nakedground.coffee',
+                    'https://ng-empire.vercel.app'
+                  );
+
+                  return (
+                    <li key={item.title} className="group relative">
+                      <Link
+                        href={updatedUrl}
+                        prefetch={true}
+                        className="flex items-center text-white underline-offset-4 hover:underline"
+                      >
+                        {item.title}
+                        {item.items && item.items.length > 0 && (
+                          <ChevronDownIcon className="ml-1 h-4 w-4 text-white" />
+                        )}
+                      </Link>
+                      {item.items && item.items.length > 0 && renderSubmenu(item.items)}
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : null}
+          </div>
+
+          {/* Center section - Logo */}
+          <div className="flex w-full justify-center md:w-1/3">
+            <Link href="/" prefetch={true} className="flex items-center justify-center">
+              <LogoSquare />
+            </Link>
+          </div>
+
+          {/* Right section - Conditional rendering based on route */}
+          <div className="flex w-1/3 items-center justify-end">
+            {isGymPage ? (
+              // Gym-specific right section (Account)
+              <div className="flex items-center text-white">
+                <Link href="/gym/account" className="text-white hover:underline">
+                  Account
+                </Link>
+              </div>
+            ) : (
+              // Default right section (Search and Cart)
+              <div className="flex items-center">
+                <div className="hidden md:flex">
+                  <Suspense fallback={<SearchSkeleton />}>
+                    <Search />
+                  </Suspense>
+                </div>
+                <CartModal />
+              </div>
+            )}
+          </div>
+        </div>
+      </nav>
+    </div>
   );
 }

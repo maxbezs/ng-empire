@@ -1,5 +1,6 @@
 'use client';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 import { useRef, useState } from 'react';
 import Slider, { Settings as SliderSettings } from 'react-slick';
 
@@ -10,6 +11,7 @@ interface Card {
   overlayText: string;
   description: string;
   price: number;
+  url: string;
 }
 
 interface CardCarouselProps {
@@ -68,19 +70,19 @@ const CardCarousel: React.FC<CardCarouselProps> = ({
       <div className="block md:hidden">
         <Slider {...settings} ref={sliderRef}>
           {cardData.map((card) => (
-            <div key={card.id} className={mobileCardClass}>
+            <Link href={card.url} key={card.id} className={mobileCardClass}>
               <div className="group relative flex flex-col rounded-3xl border bg-[#e6e6e6] shadow">
                 <img
                   src={card.imageUrl}
                   alt={card.description}
                   loading="lazy"
-                  className="h-auto w-full rounded-t-3xl transition-opacity duration-300 ease-in-out group-hover:opacity-0"
+                  className="aspect-square h-auto w-full rounded-t-3xl object-cover transition-opacity duration-300 ease-in-out group-hover:opacity-0"
                 />
                 <img
                   src={card.hoverImageUrl}
                   alt={`${card.description} Hover`}
                   loading="lazy"
-                  className="absolute left-0 top-0 h-auto w-full rounded-3xl opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+                  className="absolute left-0 top-0 aspect-square h-auto w-full rounded-t-3xl object-cover opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
                 />
                 <div className="absolute left-2 top-2 rounded p-1 text-2xl font-semibold text-black">
                   {card.overlayText}
@@ -89,23 +91,24 @@ const CardCarousel: React.FC<CardCarouselProps> = ({
                 <div className="p-2">
                   <div className="my-4 flex justify-between">
                     <span className="font-semibold sm:text-lg">{card.description}</span>
-                    <span className="text-lg font-semibold">${card.price}</span>
+                    <span className="text-lg font-semibold">£{card.price}</span>
                   </div>
-                  <button className="w-full rounded-full bg-white py-2 font-bold text-black">
+                  <div className="w-full rounded-full bg-white py-2 text-center font-bold text-black">
                     SHOP NOW
-                  </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </Slider>
       </div>
       {/* Desktop View: All Cards in Row */}
       <div className="mx-auto hidden max-w-full md:flex md:justify-center md:gap-10">
         {cardData.map((card) => (
-          <div
+          <Link
+            href={card.url}
             key={card.id}
-            className="group relative flex aspect-square flex-1 flex-col rounded-3xl border bg-[#f6efde] p-8 shadow"
+            className="group relative flex aspect-square flex-1 flex-col rounded-3xl border bg-white p-8 shadow"
           >
             <img
               src={card.imageUrl}
@@ -124,14 +127,14 @@ const CardCarousel: React.FC<CardCarouselProps> = ({
             </div>
             <div className="absolute bottom-0 left-0 h-3/4 w-full rounded-3xl bg-gradient-to-t from-[#ffffff80] to-transparent transition-opacity duration-300 ease-in-out group-hover:opacity-0"></div>
             <div className="flex-grow" />
-            <div className="z-10 mt-4 flex justify-between transition-opacity duration-300 ease-in-out group-hover:opacity-0">
+            <div className="z-10 mt-4 flex justify-between transition-opacity duration-300 ease-in-out group-hover:hidden group-hover:opacity-0">
               <span className="text-lg font-semibold">{card.description}</span>
-              <span className="text-lg font-semibold">${card.price}</span>
+              <span className="text-lg font-semibold">£{card.price}</span>
             </div>
-            <button className="absolute bottom-4 left-1/2 w-[calc(100%-32px)] -translate-x-1/2 translate-y-full transform rounded-full bg-white py-2 font-bold text-black opacity-0 transition-all duration-300 ease-in-out hover:bg-[#079547] hover:text-white group-hover:translate-y-0 group-hover:opacity-100">
+            <div className="absolute bottom-4 left-1/2 w-[calc(100%-32px)] -translate-x-1/2 translate-y-full transform rounded-full bg-white py-2 text-center font-bold text-black opacity-0 transition-all duration-300 ease-in-out hover:bg-[#079547] hover:text-white group-hover:translate-y-0 group-hover:opacity-100">
               SHOP NOW
-            </button>
-          </div>
+            </div>
+          </Link>
         ))}
       </div>
       {totalSlides > 1 && (

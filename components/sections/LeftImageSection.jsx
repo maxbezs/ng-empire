@@ -16,7 +16,7 @@ const LeftImageSection = () => {
             Harlequins, the Londres blend is now available at your home!
           </p>
           <a
-            href="#"
+            href="/product/2-bags"
             className="w-fit rounded-full bg-black px-6 py-2 font-bold text-white sm:px-8 sm:py-4"
           >
             GRAB YOURS

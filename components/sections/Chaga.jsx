@@ -20,7 +20,10 @@ const Chaga = () => {
             <p className="text-lg sm:text-2xl">
               Introducing Siberian Chaga Crystals by Naked Ground
             </p>
-            <a href="#" className="rounded-full bg-black px-6 py-2 font-bold sm:px-8 sm:py-4">
+            <a
+              href="/product/siberian-chaga-crystals"
+              className="rounded-full bg-black px-6 py-2 font-bold sm:px-8 sm:py-4"
+            >
               SHOP NOW
             </a>
           </div>

@@ -11,7 +11,10 @@ const Section = () => {
         >
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-center text-white">
             <h2 className="mb-4 text-4xl font-bold sm:text-6xl">YOUR COFFEE</h2>
-            <a href="#" className="rounded-full bg-[#92d4ee] px-6 py-2 font-bold sm:px-8 sm:py-4">
+            <a
+              href="/collections/coffee"
+              className="rounded-full bg-[#92d4ee] px-6 py-2 font-bold sm:px-8 sm:py-4"
+            >
               SHOP NOW
             </a>
           </div>

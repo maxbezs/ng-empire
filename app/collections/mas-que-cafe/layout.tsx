@@ -14,6 +14,7 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
         'https://nakedground.coffee/cdn/shop/files/2_cfefa592-94c3-4f72-842b-1e490e1a64ec.png?v=1725809094',
       overlayText: 'Chaga',
       description: 'Siberian Chaga Crystals',
+      url: '/product/siberian-chaga-crystals',
       price: 399
     },
     {
@@ -24,6 +25,7 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
         'https://nakedground.coffee/cdn/shop/files/Untitleddesign_1_copy3.png?v=1725203029',
       overlayText: 'Matcha',
       description: 'Matcha - Japanese Ceremonial Grade 5',
+      url: '/product/matcha-japanese-ceremonial-grade-5',
       price: 133
     }
   ];
@@ -59,7 +61,7 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
                 <h2 className="text-3xl font-bold sm:text-5xl">Loose-Leaf Tea</h2>
                 <p className="text-lg sm:text-2xl">Introducing Loose-Leaf Tea by Naked Ground</p>
                 <a
-                  href="#"
+                  href="/product/classic-green"
                   className="rounded-full bg-white px-6 py-2 font-bold text-black sm:px-8 sm:py-4"
                 >
                   SHOP NOW
