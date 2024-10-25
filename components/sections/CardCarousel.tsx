@@ -1,6 +1,6 @@
 'use client';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Slider, { Settings as SliderSettings } from 'react-slick';
 
 interface Card {
@@ -41,30 +41,16 @@ const CardCarousel: React.FC<CardCarouselProps> = ({
     arrows: false,
     afterChange: (current) => {
       setCurrentSlide(current);
-      console.log(`Slide changed to: ${current}`);
     }
   };
 
-  useEffect(() => {
-    console.log(`Current slide: ${currentSlide}`);
-  }, [currentSlide]);
-
   const settings = { ...defaultSettings, ...sliderSettings };
-
-  useEffect(() => {
-    console.log('CardCarousel mounted');
-    console.log(`Total slides: ${totalSlides}`);
-    return () => {
-      console.log('CardCarousel unmounted');
-    };
-  }, [totalSlides]);
 
   const handlePrev = () => {
     if (sliderRef.current && currentSlide > 0) {
       const newSlide = currentSlide - 1;
       sliderRef.current.slickGoTo(newSlide);
       setCurrentSlide(newSlide);
-      console.log('Previous button clicked');
     }
   };
 
@@ -73,7 +59,6 @@ const CardCarousel: React.FC<CardCarouselProps> = ({
       const newSlide = currentSlide + 1;
       sliderRef.current.slickGoTo(newSlide);
       setCurrentSlide(newSlide);
-      console.log('Next button clicked');
     }
   };
 
@@ -84,12 +69,12 @@ const CardCarousel: React.FC<CardCarouselProps> = ({
         <Slider {...settings} ref={sliderRef}>
           {cardData.map((card) => (
             <div key={card.id} className={mobileCardClass}>
-              <div className="group relative flex flex-col rounded-2xl border bg-[#e6e6e6] p-2 shadow">
+              <div className="group relative flex flex-col rounded-3xl border bg-[#e6e6e6] shadow">
                 <img
                   src={card.imageUrl}
                   alt={card.description}
                   loading="lazy"
-                  className="h-auto w-full rounded-3xl transition-opacity duration-300 ease-in-out group-hover:opacity-0"
+                  className="h-auto w-full rounded-t-3xl transition-opacity duration-300 ease-in-out group-hover:opacity-0"
                 />
                 <img
                   src={card.hoverImageUrl}
@@ -101,13 +86,15 @@ const CardCarousel: React.FC<CardCarouselProps> = ({
                   {card.overlayText}
                 </div>
                 <div className="flex-grow" />
-                <div className="my-4 flex justify-between">
-                  <span className="text-lg font-semibold">{card.description}</span>
-                  <span className="text-lg font-semibold">${card.price}</span>
+                <div className="p-2">
+                  <div className="my-4 flex justify-between">
+                    <span className="font-semibold sm:text-lg">{card.description}</span>
+                    <span className="text-lg font-semibold">${card.price}</span>
+                  </div>
+                  <button className="w-full rounded-full bg-white py-2 font-bold text-black">
+                    SHOP NOW
+                  </button>
                 </div>
-                <button className="w-full rounded-full bg-white py-2 font-bold text-black">
-                  SHOP NOW
-                </button>
               </div>
             </div>
           ))}
@@ -165,7 +152,6 @@ const CardCarousel: React.FC<CardCarouselProps> = ({
           >
             <ChevronRightIcon className="h-5 w-full" />
           </button>
-          {console.log('Current Slide:', currentSlide, 'Total Slides:', totalSlides)}
         </>
       )}
     </div>
