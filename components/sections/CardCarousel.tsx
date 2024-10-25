@@ -17,18 +17,9 @@ interface Card {
 interface CardCarouselProps {
   cardData?: Card[];
   sliderSettings?: SliderSettings;
-  mobileCardClass?: string;
-  desktopCardClass?: string;
-  overlayClass?: string;
 }
 
-const CardCarousel: React.FC<CardCarouselProps> = ({
-  cardData = [],
-  sliderSettings = {},
-  mobileCardClass = 'px-1',
-  desktopCardClass = 'group relative rounded-3xl border bg-[#f6efde] p-8 shadow min-h-[500px]',
-  overlayClass = 'absolute left-0 top-0 rounded p-8 text-3xl font-bold text-black'
-}) => {
+const CardCarousel: React.FC<CardCarouselProps> = ({ cardData = [], sliderSettings = {} }) => {
   const sliderRef = useRef<Slider | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const totalSlides = cardData.length;
@@ -70,21 +61,21 @@ const CardCarousel: React.FC<CardCarouselProps> = ({
       <div className="block md:hidden">
         <Slider {...settings} ref={sliderRef}>
           {cardData.map((card) => (
-            <Link href={card.url} key={card.id} className={mobileCardClass}>
-              <div className="group relative flex flex-col rounded-3xl border bg-[#e6e6e6] shadow">
+            <Link href={card.url} key={card.id} className={'px-1'}>
+              <div className="group relative flex flex-col rounded-2xl border bg-[#e6e6e6] shadow sm:rounded-3xl">
                 <img
                   src={card.imageUrl}
                   alt={card.description}
                   loading="lazy"
-                  className="aspect-square h-auto w-full rounded-t-3xl object-cover transition-opacity duration-300 ease-in-out group-hover:opacity-0"
+                  className="aspect-square h-auto w-full rounded-t-2xl object-cover transition-opacity duration-300 ease-in-out group-hover:opacity-0 sm:rounded-t-3xl"
                 />
                 <img
                   src={card.hoverImageUrl}
                   alt={`${card.description} Hover`}
                   loading="lazy"
-                  className="absolute left-0 top-0 aspect-square h-auto w-full rounded-t-3xl object-cover opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+                  className="absolute left-0 top-0 aspect-square h-auto w-full rounded-t-2xl object-cover opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 sm:rounded-t-3xl"
                 />
-                <div className="absolute left-2 top-2 rounded p-1 text-2xl font-semibold text-black">
+                <div className="absolute left-2 top-2 p-1 text-2xl font-semibold text-black">
                   {card.overlayText}
                 </div>
                 <div className="flex-grow" />
@@ -108,24 +99,24 @@ const CardCarousel: React.FC<CardCarouselProps> = ({
           <Link
             href={card.url}
             key={card.id}
-            className="group relative flex aspect-square flex-1 flex-col rounded-3xl border bg-white p-8 shadow"
+            className="group relative flex aspect-square flex-1 flex-col rounded-2xl border bg-white p-8 shadow sm:rounded-3xl"
           >
             <img
               src={card.imageUrl}
               alt={card.description}
               loading="lazy"
-              className="absolute left-0 top-0 h-full w-full rounded-3xl object-cover transition-opacity duration-300 ease-in-out group-hover:opacity-0"
+              className="absolute left-0 top-0 h-full w-full rounded-2xl object-cover transition-opacity duration-300 ease-in-out group-hover:opacity-0 sm:rounded-3xl"
             />
             <img
               src={card.hoverImageUrl}
               alt={`${card.description} Hover`}
               loading="lazy"
-              className="absolute left-0 top-0 h-full w-full rounded-3xl object-cover opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+              className="absolute left-0 top-0 h-full w-full rounded-2xl object-cover opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 sm:rounded-3xl"
             />
-            <div className="absolute left-0 top-0 rounded p-8 text-3xl font-bold text-black">
+            <div className="absolute left-0 top-0 p-8 text-3xl font-bold text-black">
               {card.overlayText}
             </div>
-            <div className="absolute bottom-0 left-0 h-3/4 w-full rounded-3xl bg-gradient-to-t from-[#ffffff80] to-transparent transition-opacity duration-300 ease-in-out group-hover:opacity-0"></div>
+            <div className="absolute bottom-0 left-0 h-3/4 w-full rounded-2xl bg-gradient-to-t from-[#ffffff80] to-transparent transition-opacity duration-300 ease-in-out group-hover:opacity-0 sm:rounded-3xl"></div>
             <div className="flex-grow" />
             <div className="z-10 mt-4 flex justify-between transition-opacity duration-300 ease-in-out group-hover:hidden group-hover:opacity-0">
               <span className="text-lg font-semibold">{card.description}</span>

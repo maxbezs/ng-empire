@@ -142,7 +142,7 @@ Join us at Lords for an unforgettable experience, and savor the perfect cup of c
             <button
               key={section}
               onClick={() => setActiveSection(section)}
-              className={`rounded-md py-2 font-medium transition-colors sm:px-4 ${
+              className={`py-2 font-medium transition-colors sm:px-4 ${
                 activeSection === section ? 'text-gray-500 underline' : 'text-black'
               }`}
             >
@@ -152,7 +152,7 @@ Join us at Lords for an unforgettable experience, and savor the perfect cup of c
         </div>
       </div>
 
-      <div className="mx-auto max-w-lg rounded-lg p-6">
+      <div className="mx-auto max-w-lg p-6">
         <img
           src="https://nakedground.coffee/cdn/shop/articles/screenshot-2024-08-19-at-11.12.51_42fb9156-07d3-4fdc-b6b3-f184fcc2d426_1131x.png?v=1724071161"
           alt="Curran Brothers celebrating"

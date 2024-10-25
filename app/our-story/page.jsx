@@ -107,7 +107,7 @@ const page = () => {
         <div className="flex flex-wrap justify-center gap-8">
           {teamMembers.map((member, index) => (
             <div key={index} className="w-full p-4 sm:w-1/2 lg:w-[400px]">
-              <div className="overflow-hidden rounded-lg bg-white shadow-lg">
+              <div className="overflow-hidden rounded-md bg-white shadow-lg">
                 <img
                   src={member.image}
                   alt={member.name}

@@ -15,7 +15,7 @@ const page = () => {
           <img
             src="https://nakedground.coffee/cdn/shop/files/dry-grass-beach-umbrellas.jpg?v=1716327805&width=900"
             alt="Naked Ground Ibiza"
-            className="h-full w-full object-cover sm:rounded-lg"
+            className="h-full w-full object-cover sm:rounded-md"
           />
         </div>
 
@@ -37,7 +37,7 @@ const page = () => {
         </div>
       </div>
       <div className="mx-4 my-8 md:mx-24">
-        <div className="relative h-[700px] w-full overflow-hidden rounded-[32px]">
+        <div className="relative h-[700px] w-full overflow-hidden rounded-2xl sm:rounded-3xl">
           {/* Video Background */}
           <video
             autoPlay

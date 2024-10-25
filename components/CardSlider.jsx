@@ -52,7 +52,7 @@ const TeamSlider = () => {
             <img
               src={member.image}
               alt={member.name}
-              className="h-auto w-full max-w-[400px] rounded-lg shadow-lg"
+              className="h-auto w-full max-w-[400px] rounded-md shadow-lg"
             />
             <h3 className="mt-3 text-xl font-semibold">{member.name}</h3>
             <p className="text-gray-600">{member.role}</p>

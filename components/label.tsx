@@ -14,7 +14,7 @@ const Label = ({
 }) => {
   return (
     <div className={clsx('flex w-full sm:px-4 sm:pb-4')}>
-      <div className="flex flex-col rounded-lg p-2 font-semibold text-black">
+      <div className="flex flex-col rounded-md p-2 font-semibold text-black">
         <h3 className="mb-2">{title}</h3>
         <Price
           amount={amount}

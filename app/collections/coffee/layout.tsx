@@ -34,7 +34,7 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
       </div>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 gap-4 text-center md:grid-cols-3">
-          <div className="rounded-lg p-4">
+          <div className="p-4">
             <img
               src="https://nakedground.coffee/cdn/shop/files/Untitled_design_copy_2_108x.png?v=1724335043"
               alt="Balearic"
@@ -46,7 +46,7 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
               taste of the Balearics
             </p>
           </div>
-          <div className="rounded-lg p-4">
+          <div className="p-4">
             <img
               src="https://nakedground.coffee/cdn/shop/files/Untitled_design_db1aa806-445a-42c3-9f48-801bf5f4f7aa_108x.png?v=1724334690"
               alt="Londres"
@@ -58,7 +58,7 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
               London. Punchy yet balanced.
             </p>
           </div>
-          <div className="rounded-lg p-4">
+          <div className="p-4">
             <img
               src="https://nakedground.coffee/cdn/shop/files/Untitled_design_copy_108x.png?v=1724335022"
               alt="Brasília"

@@ -50,7 +50,7 @@ export function Navbar() {
 
   const renderSubmenu = (children: Menu[]) => {
     return (
-      <ul className="absolute left-0 top-full z-10 hidden w-fit min-w-40 rounded-lg border-2 border-white bg-[#92d4ee] p-4 shadow-lg group-hover:block">
+      <ul className="absolute left-0 top-full z-10 hidden w-fit min-w-40 rounded-md border border-white bg-[#92d4ee] p-4 shadow-lg group-hover:block">
         {children.map((subItem) => {
           const updatedSubUrl = subItem.path.replace(
             'https://nakedground.coffee',

@@ -97,7 +97,7 @@ const page = () => {
 
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 gap-4 text-center md:grid-cols-2">
-          <div className="rounded-lg p-4">
+          <div className="p-4">
             <div className="flex flex-col items-center">
               <span className="mx-auto" role="img" aria-label="emoji">
                 🌊
@@ -108,7 +108,7 @@ const page = () => {
               </p>
             </div>
           </div>
-          <div className="rounded-lg p-4">
+          <div className="p-4">
             <div className="flex flex-col items-center">
               <span className="mx-auto" role="img" aria-label="emoji">
                 🧵
@@ -119,7 +119,7 @@ const page = () => {
               </p>
             </div>
           </div>
-          <div className="rounded-lg p-4">
+          <div className="p-4">
             <div className="flex flex-col items-center">
               <span className="mx-auto" role="img" aria-label="emoji">
                 ✨
@@ -130,7 +130,7 @@ const page = () => {
               </p>
             </div>
           </div>
-          <div className="rounded-lg p-4">
+          <div className="p-4">
             <div className="flex flex-col items-center">
               <span className="mx-auto" role="img" aria-label="emoji">
                 📏

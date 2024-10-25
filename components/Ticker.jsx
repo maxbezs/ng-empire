@@ -8,7 +8,7 @@ const Ticker = ({ content, color, background }) => {
       {content.map((text, index) => (
         <div
           key={index}
-          className={`item animate-scrollLeft text-sm font-bold uppercase item${index + 1} absolute flex h-fit w-[240px] items-center justify-around rounded-lg text-${color} sm:w-[270px]`}
+          className={`item animate-scrollLeft text-sm font-bold uppercase item${index + 1} absolute flex h-fit w-[240px] items-center justify-around text-${color} sm:w-[270px]`}
         >
           <div className={`bg-${color} h-2 w-2 rounded-full`} />
           {text}
