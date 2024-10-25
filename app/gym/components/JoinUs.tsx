@@ -6,6 +6,7 @@ const JoinUs = () => {
           autoPlay
           loop
           muted
+          playsInline
           className="absolute left-0 top-0 z-0 h-full w-full object-cover brightness-50"
         >
           <source src="https://static.pexels.com/lib/videos/free-videos.mp4" type="video/mp4" />

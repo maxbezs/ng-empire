@@ -38,11 +38,11 @@ const page = () => {
       </div>
       <div className="mx-4 my-8 md:mx-24">
         <div className="relative h-[700px] w-full overflow-hidden rounded-2xl sm:rounded-3xl">
-          {/* Video Background */}
           <video
             autoPlay
             loop
             muted
+            playsInline
             className="absolute left-0 top-0 h-full w-full object-cover"
             src="https://nakedground.coffee/cdn/shop/videos/c/vp/9f20bf5f89ef4364ac40ced7aca46ea5/9f20bf5f89ef4364ac40ced7aca46ea5.HD-1080p-4.8Mbps-26702584.mp4?v=0"
             alt="Background video"

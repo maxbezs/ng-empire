@@ -12,6 +12,7 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
               autoPlay
               loop
               muted
+              playsInline
               className="absolute left-1/2 top-1/2 min-h-full w-auto min-w-full max-w-none -translate-x-1/2 -translate-y-1/2 transform"
             >
               <source
