@@ -1,7 +1,6 @@
 import { CartProvider } from 'components/cart/cart-context';
 import Footer from 'components/layout/footer';
 import { Navbar } from 'components/layout/navbar';
-import { WelcomeToast } from 'components/welcome-toast';
 import WhatsappButton from 'components/WhatsappButton';
 import { GeistSans } from 'geist/font/sans';
 import { getCart } from 'lib/shopify';
@@ -9,7 +8,6 @@ import { cookies } from 'next/headers';
 import { ReactNode } from 'react';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import { Toaster } from 'sonner';
 import './globals.css';
 const { TWITTER_CREATOR, TWITTER_SITE, SITE_NAME } = process.env;
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
@@ -40,8 +38,6 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           <Navbar />
           <main>
             {children}
-            <Toaster closeButton />
-            <WelcomeToast />
             <WhatsappButton />
           </main>
           <Footer />
