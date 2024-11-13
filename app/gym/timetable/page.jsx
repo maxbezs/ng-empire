@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Dropdown = ({ label, options, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,6 +32,7 @@ const Dropdown = ({ label, options, onSelect }) => {
     </div>
   );
 };
+
 const TimetableFilter = () => {
   const [calendar, setCalendar] = useState('All Calendars');
   const [instructor, setInstructor] = useState('Instructor');
@@ -72,125 +73,56 @@ const TimetableFilter = () => {
     </div>
   );
 };
+
 const Timetable = () => {
-  const days = [
-    {
-      date: 'Sun 20 Oct',
-      classes: [
-        {
-          title: 'POWERLIFTING',
-          time: '10:00 AM - 11:00 AM',
-          instructor: 'Ethan Jones',
-          category: 'Performance',
-          status: 'Spaces Available',
-          type: 'Class Timetable',
-          details: true,
-          difficulty: 3
-        }
-      ]
-    },
-    {
-      date: 'Mon 21 Oct',
-      classes: [
-        {
-          title: 'ATHLETIC PERFORMANCE',
-          time: '8:00 AM - 9:00 AM',
-          instructor: 'Dafydd Judd',
-          category: 'Class Timetable',
-          status: 'Spaces Available',
-          details: true,
-          difficulty: 3
-        },
-        {
-          title: 'S & C',
-          time: '6:00 PM - 6:45 PM',
-          instructor: 'Alex Bodin',
-          category: 'Class Timetable',
-          status: 'Spaces Available',
-          details: true,
-          difficulty: 3
-        }
-      ]
-    },
-    {
-      date: 'Tue 22 Oct',
-      classes: [
-        {
-          title: 'GOLDEN STRONG',
-          time: '10:00 AM - 11:00 AM',
-          instructor: 'Dafydd Judd',
-          category: 'Class Timetable',
-          status: 'Spaces Available',
-          details: true,
-          difficulty: 2
-        },
-        {
-          title: 'ATHLETIC CONDITIONING',
-          time: '6:00 PM - 7:00 PM',
-          instructor: 'Alex Bodin',
-          category: 'Class Timetable',
-          status: 'Spaces Available',
-          details: true,
-          difficulty: 3
-        }
-      ]
-    },
-    {
-      date: 'Wed 23 Oct',
-      classes: [
-        {
-          title: 'WATERMELON BOOTCAMP',
-          time: '6:00 PM - 6:45 PM',
-          instructor: 'Jon Meades',
-          category: 'Class Timetable',
-          status: 'Spaces Available',
-          details: true,
-          difficulty: 3
-        },
-        {
-          title: 'RUN CLUB',
-          time: '6:30 PM - 7:00 PM',
-          instructor: 'Alex Bodin',
-          category: 'Class Timetable',
-          status: 'Spaces Available',
-          details: true,
-          difficulty: 2
-        }
-      ]
-    },
-    {
-      date: 'Thu 24 Oct',
-      classes: [
-        {
-          title: 'GOLDEN STRONG',
-          time: '10:00 AM - 11:00 AM',
-          instructor: 'Dafydd Judd',
-          category: 'Class Timetable',
-          status: 'Spaces Available',
-          details: true,
-          difficulty: 2
-        },
-        {
-          title: 'ATHLETIC CONDITIONING',
-          time: '6:00 PM - 7:00 PM',
-          instructor: 'Alex Bodin',
-          category: 'Class Timetable',
-          status: 'Spaces Available',
-          details: true,
-          difficulty: 3
-        },
-        {
-          title: 'PERFORM (FULL BODY)',
-          time: '6:00 PM - 7:00 PM',
-          instructor: 'Lawrence Facey',
-          category: 'Performance',
-          status: 'Spaces Available',
-          details: true,
-          difficulty: 3
-        }
-      ]
-    }
-  ];
+  const [classes, setClasses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchClasses = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch('https://admin-panel-gym.vercel.app/api/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            query: `
+              query {
+                classes {
+                  id
+                  name
+                  description
+                  trainerId {
+                    first_name
+                    last_name
+                  }
+                  scheduleTime
+                  location
+                  duration
+                  capacity
+                }
+              }
+            `
+          })
+        });
+        const { data } = await response.json();
+        setClasses(data.classes);
+      } catch (err) {
+        console.error(err);
+        setError('Failed to load classes.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchClasses();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="px-5 py-10 text-black">
@@ -198,30 +130,26 @@ const Timetable = () => {
         <h1 className="mx-auto w-fit p-2 text-4xl">Timetable</h1>
         <TimetableFilter />
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
-          {days.map((day, index) => (
-            <div key={index} className="h-fit rounded-lg bg-white">
+          {classes.map((classInfo, index) => (
+            <div key={classInfo.id} className="h-fit rounded-lg bg-white">
               <div className="rounded-t-lg bg-white p-3 text-black">
-                <h2 className="text-xl font-bold">{day.date}</h2>
+                <h2 className="text-xl font-bold">{classInfo.name}</h2>
+                <p>{classInfo.description}</p>
               </div>
-              {day.classes.map((classInfo, idx) => (
-                <div key={idx} className="border-t border-gray-700 p-4">
-                  <p className="text-black">{classInfo.time}</p>
-                  <p className="mb-1 text-xs text-green-500">{classInfo.category}</p>
-                  <h3 className="text-lg font-bold">{classInfo.title}</h3>
-                  <p className="mb-2 text-sm">👤 {classInfo.instructor}</p>
-                  <p className="text-sm text-green-400">{classInfo.status}</p>
-                  <div className="mt-2 flex items-center">
-                    <button className="rounded-md bg-[#92d4ee] px-3 py-1 text-white transition hover:bg-blue-700">
-                      {classInfo.details ? 'VIEW DETAIL' : 'BOOK NOW'}
-                    </button>
-                    <div className="ml-auto text-blue-400">
-                      {Array.from({ length: classInfo.difficulty }).map((_, i) => (
-                        <span key={i}>⚡</span>
-                      ))}
-                    </div>
-                  </div>
+              <div className="border-t border-gray-700 p-4">
+                <p className="text-black">Time: {classInfo.scheduleTime}</p>
+                <p className="mb-1 text-xs text-green-500">Location: {classInfo.location}</p>
+                <h3 className="text-lg font-bold">
+                  Instructor: {classInfo.trainerId.first_name} {classInfo.trainerId.last_name}
+                </h3>
+                <p className="mb-2 text-sm">Duration: {classInfo.duration} mins</p>
+                <p className="text-sm text-green-400">Capacity: {classInfo.capacity}</p>
+                <div className="mt-2 flex items-center">
+                  <button className="rounded-md bg-[#92d4ee] px-3 py-1 text-white transition hover:bg-blue-700">
+                    VIEW DETAIL
+                  </button>
                 </div>
-              ))}
+              </div>
             </div>
           ))}
         </div>
