@@ -20,6 +20,7 @@ const gymMenu = [
       { title: 'MÁS QUE CAFÉ', path: 'https://nakedground.coffee/mas-que-cafe', items: [] }
     ]
   },
+  { title: 'Gym', path: 'https://nakedground.coffee/gym/', items: [] },
   { title: 'Memberships', path: 'https://nakedground.coffee/gym/memberships', items: [] },
   { title: 'Timetable', path: 'https://nakedground.coffee/gym/timetable', items: [] },
   { title: 'Contact Us', path: 'https://nakedground.coffee/gym/contact-us', items: [] }
@@ -95,10 +96,20 @@ export function Navbar() {
             {menu.length ? (
               <ul className="hidden gap-6 md:flex md:items-center">
                 {menu.map((item: Menu) => {
-                  let updatedUrl = item.path.replace(
-                    'https://nakedground.coffee',
-                    'https://ng-empire.vercel.app'
-                  );
+                  let updatedUrl;
+
+                  // Check the environment (this is a simple check; adjust as per your setup)
+                  if (process.env.NODE_ENV === 'production') {
+                    updatedUrl = item.path.replace(
+                      'https://nakedground.coffee',
+                      'https://ng-empire.vercel.app'
+                    );
+                  } else {
+                    updatedUrl = item.path.replace(
+                      'https://nakedground.coffee',
+                      'http://localhost:3000'
+                    ); // In dev, no replacement needed
+                  }
 
                   return (
                     <li key={item.title} className="group relative">
