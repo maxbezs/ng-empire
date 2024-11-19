@@ -107,7 +107,7 @@ export function Navbar() {
                   } else {
                     updatedUrl = item.path.replace(
                       'https://nakedground.coffee',
-                      'http://localhost:3000'
+                      'http://localhost:3001'
                     ); // In dev, no replacement needed
                   }
 
