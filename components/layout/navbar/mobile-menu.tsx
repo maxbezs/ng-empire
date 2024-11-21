@@ -40,7 +40,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
       <ul className={`ml-4 ${activeSubmenu === index ? 'block' : 'hidden'}`}>
         {children.map((subItem) => {
           const updatedSubUrl = subItem.path.replace(
-            'https://rouge-technologies.myshopify.com',
+            'https://nakedground.coffee',
             process.env.NEXT_PUBLIC_LOCAL_STORE_URL || ''
           );
           return (
