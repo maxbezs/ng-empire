@@ -94,7 +94,8 @@ export async function POST(req) {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       path: '/',
-      sameSite: 'strict'
+      sameSite: 'strict',
+      maxAge: 8 * 60 * 60
     });
 
     return createResponse('Token is valid', 200, { decodedToken, memberData });
