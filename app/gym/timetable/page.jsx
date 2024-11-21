@@ -2,10 +2,10 @@
 
 import TimetableFilter from './TimetableFilter';
 import TimetableList from './TimetableList';
-
+const GRAPHQL_ENDPOINT = process.env.GRAPHQL_API_URL || 'http://localhost:3000/api/graphql';
 const fetchClassesData = async () => {
   try {
-    const response = await fetch('https://admin-panel-gym.vercel.app/api/graphql', {
+    const response = await fetch(GRAPHQL_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

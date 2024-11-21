@@ -1,115 +1,44 @@
-import jwt from 'jsonwebtoken';
-import { cookies } from 'next/headers';
-
-const SECRET_KEY = process.env.JWT_SECRET || 'your_secret_key';
-
-const createResponse = (message, status, data = {}) => {
-  return new Response(JSON.stringify({ message, ...data }), {
-    status,
-    headers: { 'Content-Type': 'application/json' }
-  });
-};
-
-const clearCookie = async (name) => {
-  const cookieStore = await cookies();
-  cookieStore.delete(name);
-};
-
-const isTokenExpired = (decodedToken) => {
-  const currentTime = Math.floor(Date.now() / 1000);
-  return decodedToken.exp && decodedToken.exp < currentTime;
-};
-
-const fetchMemberData = async (token) => {
-  const query = `
-    query getMember($token: String) {
-      member(token: $token) {
-        id
-        first_name
-        last_name
-        phone
-        email
-        membership
-        status
-        start_date
-        end_date
-        role
-      }
-    }
-  `;
-
-  const response = await fetch('http://localhost:3000/api/graphql', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ query, variables: { token } })
-  });
-
-  const { data, errors } = await response.json();
-
-  if (errors) {
-    throw new Error(errors[0]?.message || 'Failed to fetch member data');
-  }
-
-  if (!data?.member) {
-    throw new Error('Member not found');
-  }
-
-  return data.member;
-};
+import { createResponse, fetchMemberData, manageCookies, validateToken } from 'app/api-utils/utils';
 
 export async function POST(req) {
-  let tokenn;
+  const cookieManager = await manageCookies();
+  let token;
+
+  // Retrieve token from request body or cookies
   try {
-    const { token } = await req.json();
-    tokenn = token;
+    const body = await req.json();
+    token = body.token;
   } catch {
-    tokenn = null;
+    token = cookieManager.get('token');
   }
 
-  if (!tokenn) {
-    const cookieStore = await cookies();
-    tokenn = cookieStore.get('token')?.value;
-  }
-
-  if (!tokenn) {
+  if (!token) {
     return createResponse('No token provided', 400);
   }
 
   try {
-    const decodedToken = jwt.verify(tokenn, SECRET_KEY);
+    // Validate the token
+    validateToken(token);
 
-    if (isTokenExpired(decodedToken)) {
-      await clearCookie('token');
-      return createResponse('Token is expired', 401);
-    }
+    // Fetch member data
+    const memberData = await fetchMemberData(token);
 
-    const memberData = await fetchMemberData(tokenn);
+    // Set the token cookie
+    await cookieManager.set('token', token, { maxAge: 8 * 60 * 60 }); // 8 hours
 
-    const cookieStore = await cookies();
-    cookieStore.set({
-      name: 'token',
-      value: tokenn,
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      path: '/',
-      sameSite: 'strict',
-      maxAge: 8 * 60 * 60
-    });
-
-    return createResponse('Token is valid', 200, { decodedToken, memberData });
+    return createResponse('Token is valid', 200, { memberData });
   } catch (err) {
-    if (err.name === 'TokenExpiredError') {
-      await clearCookie('token');
+    // Handle token errors
+    if (err.message === 'TokenExpired') {
+      await cookieManager.delete('token');
       return createResponse('Token is expired', 401);
     }
-
-    if (err.name === 'JsonWebTokenError') {
-      await clearCookie('token');
+    if (err.message === 'InvalidToken') {
+      await cookieManager.delete('token');
       return createResponse('Invalid token', 401);
     }
 
+    // Handle unexpected errors
     console.error('Unexpected error in /api/login:', err);
     return createResponse('Internal server error', 500);
   }
