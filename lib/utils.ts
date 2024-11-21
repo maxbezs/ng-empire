@@ -7,6 +7,35 @@ export const createUrl = (pathname: string, params: URLSearchParams | ReadonlyUR
   return `${pathname}${queryString}`;
 };
 
+export const formatDate = (timestamp: any) => {
+  // Convert the input to a number
+  const date = new Date(Number(timestamp));
+
+  // Check if the date is valid
+  const isValidDate = !isNaN(date.getTime());
+
+  // Format the date and time if the date is valid
+  const formattedDate = isValidDate
+    ? date.toLocaleDateString('en-GB', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
+    : 'Invalid Date';
+
+  const formattedTime = isValidDate
+    ? date.toLocaleTimeString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false // Use 24-hour clock
+      })
+    : 'Invalid Time';
+
+  // Return an object with the formatted date and time
+  return `${formattedDate}`;
+};
+
 export const ensureStartsWith = (stringToCheck: string, startsWith: string) =>
   stringToCheck.startsWith(startsWith) ? stringToCheck : `${startsWith}${stringToCheck}`;
 
