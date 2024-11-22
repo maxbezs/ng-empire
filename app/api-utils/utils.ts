@@ -1,3 +1,4 @@
+'use server';
 import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
@@ -65,13 +66,15 @@ export const fetchMemberData = async (token: any) => {
   return data.member;
 };
 
-export const createResponse = (
+export const createResponse = async (
   message: string,
   status: number,
   data: Record<string, any> = {}
-): NextResponse => NextResponse.json({ message, ...data }, { status });
+): Promise<NextResponse> => {
+  return NextResponse.json({ message, ...data }, { status });
+};
 
-export const validateToken = (token: any) => {
+export const validateToken = async (token: any) => {
   try {
     return jwt.verify(token, SECRET_KEY);
   } catch (err) {
