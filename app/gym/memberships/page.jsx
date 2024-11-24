@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const JoinNow = () => {
   return (
     <div className="bg-gray-100 px-5 py-10">
@@ -46,9 +48,12 @@ const MembershipCard = ({ title, price, description, image }) => {
       <img src={image} alt={title} className="mb-4 h-[500px] w-[500px] rounded-lg" />
       <p className="mb-4 text-lg font-bold">From {price}</p>
       <p className="mb-4 text-gray-600">{description}</p>
-      <button className="mt-auto rounded-lg bg-[#92d4ee] py-2 text-white transition hover:bg-blue-700">
-        View Options
-      </button>
+      <Link
+        href={'/gym/join'}
+        className="mt-auto flex w-full justify-center rounded-lg bg-[#92d4ee] py-2 align-middle text-white transition hover:bg-blue-700"
+      >
+        Become member
+      </Link>
     </div>
   );
 };

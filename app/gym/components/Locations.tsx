@@ -1,6 +1,6 @@
 const Locations = () => {
   return (
-    <div className="bg-secondary grid grid-cols-1 sm:grid-cols-2">
+    <div className="bg-secondary grid grid-cols-1 bg-white p-12 sm:grid-cols-2">
       {/* Map Section */}
       <div className="flex">
         <iframe
@@ -13,7 +13,7 @@ const Locations = () => {
       </div>
 
       {/* Information Section */}
-      <div className="relative flex flex-col space-y-6 p-[6vw]">
+      <div className="relative flex flex-col space-y-6 p-12">
         {/* Address Section */}
         <div>
           <h3 className="text-primary mb-2 text-lg font-semibold">Address</h3>
@@ -46,15 +46,6 @@ const Locations = () => {
             <a href="mailto:info@nakedgroundgym.co.uk" className="text-blue-500">
               info@nakedgroundgym.co.uk
             </a>
-          </p>
-        </div>
-
-        {/* Accessibility Information */}
-        <div>
-          <h3 className="text-primary mb-2 text-lg font-semibold">Accessibility</h3>
-          <p className="text-base">
-            Our facility is wheelchair accessible, with parking available onsite. If you have
-            specific needs, please contact us in advance, and we’ll be happy to assist.
           </p>
         </div>
       </div>

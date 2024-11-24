@@ -142,10 +142,11 @@ export function Navbar() {
           <div className="flex w-1/3 items-center justify-end">
             {isGymPage ? (
               // Gym-specific right section (Account)
-              <div className="flex items-center text-white">
+              <div className="flex items-center gap-2 text-white">
                 <Link href="/gym/account" className="text-white hover:underline">
                   Account
-                </Link>
+                </Link>{' '}
+                <CartModal />
               </div>
             ) : (
               // Default right section (Search and Cart)

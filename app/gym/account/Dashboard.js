@@ -1,10 +1,10 @@
-import ClassesSection from './ClassesSection';
-import Header from './Header';
-import NotificationsSection from './NotificationsSection';
-import PaymentSection from './PaymentSection';
-import PersonalDataSection from './PersonalDataSection';
-import QRCodeSection from './QRCodeSection';
-import VisitHistory from './VisitHistory';
+import ClassesSection from '../components/account/ClassesSection';
+import Header from '../components/account/Header';
+import NotificationsSection from '../components/account/NotificationsSection';
+import PaymentSection from '../components/account/PaymentSection';
+import PersonalDataSection from '../components/account/PersonalDataSection';
+import QRCodeSection from '../components/account/QRCodeSection';
+import VisitHistory from '../components/account/VisitHistory';
 
 const Dashboard = ({ memberData, onLogout }) => (
   <div className="flex min-h-screen flex-col bg-gray-100">
