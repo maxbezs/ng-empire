@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+const GRAPHQL_ENDPOINT = process.env.GRAPHQL_API_URL || 'http://localhost:3000/api/graphql';
 
 const RegistrationPage = () => {
   const [formData, setFormData] = useState({
@@ -72,7 +73,7 @@ const RegistrationPage = () => {
           throw new Error('Invalid duration selected.');
         }
 
-        const response = await fetch('http://localhost:3000/api/graphql', {
+        const response = await fetch(GRAPHQL_ENDPOINT, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
