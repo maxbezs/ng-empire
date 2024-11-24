@@ -1,4 +1,5 @@
 'use client';
+
 import { useState } from 'react';
 
 const RegistrationPage = () => {
@@ -16,6 +17,7 @@ const RegistrationPage = () => {
 
   const [error, setError] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -51,12 +53,75 @@ const RegistrationPage = () => {
     return true;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      console.log('Form submitted successfully!', formData);
-      alert('Registration successful!');
+      setLoading(true);
+      try {
+        // Calculate end_date based on duration
+        let endDate;
+        const startDate = new Date();
+        if (formData.duration === 'yearly') {
+          endDate = new Date(startDate.setFullYear(startDate.getFullYear() + 1)).toISOString();
+        } else if (formData.duration === 'monthly') {
+          endDate = new Date(startDate.setMonth(startDate.getMonth() + 1)).toISOString();
+        } else if (formData.duration === 'weekly') {
+          endDate = new Date(startDate.setDate(startDate.getDate() + 7)).toISOString();
+        } else {
+          throw new Error('Invalid duration selected.');
+        }
+
+        const response = await fetch('http://localhost:3000/api/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            query: `
+              mutation createMember($input: NewMemberInput!) {
+                createMember(input: $input) {
+                  first_name
+                  last_name
+                  phone
+                  email
+                  membership
+                  status
+                  start_date
+                  end_date
+                }
+              }
+            `,
+            variables: {
+              input: {
+                first_name: formData.name,
+                last_name: formData.surname,
+                phone: formData.phone,
+                email: formData.email,
+                membership: formData.membershipType,
+                status: 'ACTIVE',
+                start_date: new Date().toISOString(),
+                end_date: endDate,
+                password: formData.password
+              }
+            }
+          })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.data) {
+          console.log('Member created:', result.data.createMember);
+          alert('Registration successful!');
+        } else {
+          throw new Error(result.errors ? result.errors[0].message : 'Unknown error occurred');
+        }
+      } catch (err) {
+        console.error('Error creating member:', err);
+        setError('An error occurred during registration. Please try again.');
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -163,9 +228,9 @@ const RegistrationPage = () => {
               required
             >
               <option value="">Select Membership Type</option>
-              <option value="basic">Basic</option>
-              <option value="premium">Premium</option>
-              <option value="vip">VIP</option>
+              <option value="MONTHLY">MONTHLY</option>
+              <option value="WEEKLY">Weekly</option>
+              <option value="YEARLY">YEARLY</option>
             </select>
           </div>
 
@@ -203,8 +268,9 @@ const RegistrationPage = () => {
         <button
           type="submit"
           className="mt-4 w-full rounded bg-blue-500 p-2 text-white hover:bg-blue-600"
+          disabled={loading}
         >
-          Register
+          {loading ? 'Registering...' : 'Register'}
         </button>
       </form>
     </div>
