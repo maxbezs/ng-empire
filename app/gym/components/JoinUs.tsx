@@ -18,7 +18,7 @@ const JoinUs = () => {
           {/* Call to Action Button */}
           <a
             href="#register"
-            className="text-primary duration-250 hover: mt-3 w-2/3 transform cursor-pointer rounded-full border-2 border-transparent bg-white p-3 text-center text-2xl font-extrabold transition ease-in-out hover:scale-110 hover:border-white hover:bg-transparent sm:w-1/2"
+            className="text-primary duration-250 hover: mt-3 w-2/3 transform cursor-pointer rounded-full border-2 border-transparent bg-[#84d4f4] p-3 text-center text-2xl font-extrabold transition ease-in-out hover:scale-110 hover:border-white hover:bg-transparent sm:w-1/2"
           >
             Register
           </a>
