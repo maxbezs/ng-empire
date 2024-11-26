@@ -32,7 +32,7 @@ const JoinUs = () => {
         </div>
       </div>
       <div className="h-[700px] md:w-1/2">
-        <Image alt="join" src={'/join.jpg'} width={550} height={500} className="object-contain" />
+        <Image alt="join" src={'/join.jpg'} width={500} height={500} className="object-contain" />
       </div>
     </div>
   );
