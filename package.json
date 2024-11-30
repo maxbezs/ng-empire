@@ -16,6 +16,7 @@
   "dependencies": {
     "@headlessui/react": "^2.1.10",
     "@heroicons/react": "^2.1.5",
+    "@hookform/resolvers": "^3.9.1",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/react-slick": "^0.23.13",
     "clsx": "^2.1.1",
@@ -28,7 +29,9 @@
     "react-hook-form": "^7.53.1",
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",
-    "sonner": "^1.5.0"
+    "sonner": "^1.5.0",
+    "stripe": "^17.4.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
@@ -36,6 +39,7 @@
     "@types/node": "22.7.7",
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+    "@types/yup": "^0.32.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
     "prettier": "3.3.3",

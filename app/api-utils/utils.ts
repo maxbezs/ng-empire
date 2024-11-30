@@ -32,7 +32,7 @@ const GRAPHQL_ENDPOINT = process.env.GRAPHQL_API_URL || 'http://localhost:3000/a
 
 export const fetchMemberData = async (token: any) => {
   const query = `
-      query getMember($token: String) {
+      query getMemberById($token: String) {
         member(token: $token) {
           id
           first_name
@@ -43,7 +43,6 @@ export const fetchMemberData = async (token: any) => {
           status
           start_date
           end_date
-          role
         }
       }
     `;
