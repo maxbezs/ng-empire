@@ -11,9 +11,9 @@ const Header = ({ memberData, onLogout }) => {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <div>
           <h1 className="text-xl font-bold text-gray-800">
-            Welcome, {memberData?.first_name} {memberData?.last_name}
+            Welcome, {memberData?.firstName} {memberData?.lastName}
           </h1>
-          <p className="text-gray-600">Member since: {formatDate(memberData.start_date)}</p>
+          <p className="text-gray-600">Member since: {formatDate(memberData.createdAt)}</p>
         </div>
 
         <div className="flex items-center space-x-6">

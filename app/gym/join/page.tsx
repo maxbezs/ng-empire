@@ -124,7 +124,7 @@ const RegistrationPage: React.FC = () => {
       if (!selectedMembership) {
         throw new Error('Membership type not found');
       }
-      const GRAPHQL_ENDPOINT = 'https://admin-panel-gym.vercel.app/api/graphql';
+      const GRAPHQL_ENDPOINT = 'http://localhost:3000/api/graphql';
 
       // Step 1: Create the member
       const response = await fetch(GRAPHQL_ENDPOINT, {
@@ -184,7 +184,7 @@ const RegistrationPage: React.FC = () => {
 
   const handleCheckout = async (priceId: string, token: string) => {
     setLoading(true);
-    const GRAPHQL_ENDPOINT = 'https://admin-panel-gym.vercel.app/api/graphql';
+    const GRAPHQL_ENDPOINT = 'http://localhost:3000/api/graphql';
 
     try {
       const response = await fetch(GRAPHQL_ENDPOINT, {

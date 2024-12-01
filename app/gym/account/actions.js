@@ -32,7 +32,7 @@ export async function checkSessionAction() {
   }
 }
 
-const GRAPHQL_ENDPOINT = 'https://admin-panel-gym.vercel.app/api/graphql';
+const GRAPHQL_ENDPOINT = 'http://localhost:3000/api/graphql';
 
 export async function loginAction(email, password) {
   console.log('loginAction: Attempting to log in with email:', email);

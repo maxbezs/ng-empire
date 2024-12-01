@@ -2,7 +2,7 @@
 
 import TimetableFilter from './TimetableFilter';
 import TimetableList from './TimetableList';
-const GRAPHQL_ENDPOINT = 'https://admin-panel-gym.vercel.app/api/graphql';
+const GRAPHQL_ENDPOINT = 'http://localhost:3000/api/graphql';
 const fetchClassesData = async () => {
   try {
     const response = await fetch(GRAPHQL_ENDPOINT, {
@@ -18,8 +18,8 @@ const fetchClassesData = async () => {
               name
               description
               trainerId {
-                first_name
-                last_name
+                firstName
+                lastName
               }
               scheduleTime
               location

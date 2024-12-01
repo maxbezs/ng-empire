@@ -35,7 +35,7 @@ const TimetableList = ({ classes }) => {
               <p className="text-black">Time: {classInfo.scheduleTime}</p>
               <p className="mb-1 text-xs text-green-500">Location: {classInfo.location}</p>
               <h3 className="text-lg font-bold">
-                Instructor: {classInfo.trainerId.first_name} {classInfo.trainerId.last_name}
+                Instructor: {classInfo.trainerId.firstName} {classInfo.trainerId.lastName}
               </h3>
               <p className="mb-2 text-sm">Duration: {classInfo.duration} mins</p>
               <p className="text-sm text-green-400">Capacity: {classInfo.capacity}</p>
@@ -60,7 +60,7 @@ const TimetableList = ({ classes }) => {
             <p className="text-black">Time: {selectedClass.scheduleTime}</p>
             <p className="mb-1 text-xs text-green-500">Location: {selectedClass.location}</p>
             <h3 className="text-lg font-bold">
-              Instructor: {selectedClass.trainerId.first_name} {selectedClass.trainerId.last_name}
+              Instructor: {selectedClass.trainerId.firstName} {selectedClass.trainerId.lastName}
             </h3>
             <p className="mb-2 text-sm">Duration: {selectedClass.duration} mins</p>
             <p className="text-sm text-green-400">Capacity: {selectedClass.capacity}</p>

@@ -42,7 +42,7 @@ const SECRET_KEY =
     throw new Error('JWT_SECRET is not defined');
   })();
 
-const GRAPHQL_ENDPOINT = 'https://admin-panel-gym.vercel.app/api/graphql';
+const GRAPHQL_ENDPOINT = 'http://localhost:3000/api/graphql';
 
 export const fetchMemberData = async (token) => {
   if (!token) {
