@@ -184,7 +184,7 @@ const RegistrationPage: React.FC = () => {
 
   const handleCheckout = async (priceId: string, token: string) => {
     setLoading(true);
-    const GRAPHQL_ENDPOINT = process.env.GRAPHQL_API_URL || 'http://localhost:3000/api/graphql';
+    const GRAPHQL_ENDPOINT = 'https://admin-panel-gym.vercel.app/api/graphql';
 
     try {
       const response = await fetch(GRAPHQL_ENDPOINT, {
