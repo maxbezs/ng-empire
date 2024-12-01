@@ -127,7 +127,7 @@ const RegistrationPage: React.FC = () => {
 
       // Step 1: Create the member
       const response = await fetch(
-        process.env.NEXT_PUBLIC_GRAPHQL_API_URL || 'http://localhost:3000/api/graphql',
+        process.env.GRAPHQL_API_URL || 'http://localhost:3000/api/graphql',
         {
           method: 'POST',
           headers: {
@@ -188,13 +188,15 @@ const RegistrationPage: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3000/api/graphql', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          query: `
+      const response = await fetch(
+        process.env.GRAPHQL_API_URL || 'http://localhost:3000/api/graphql',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            query: `
             mutation createCheckoutSession($input: CreateCheckoutSessionInput!) {
               createCheckoutSession(input: $input) {
                 sessionId
@@ -202,14 +204,15 @@ const RegistrationPage: React.FC = () => {
               }
             }
           `,
-          variables: {
-            input: {
-              priceId, // Ensure this is defined or passed
-              token // Ensure this is defined or passed
+            variables: {
+              input: {
+                priceId, // Ensure this is defined or passed
+                token // Ensure this is defined or passed
+              }
             }
-          }
-        })
-      });
+          })
+        }
+      );
 
       const result = await response.json();
       console.log('Full Response:', result);
