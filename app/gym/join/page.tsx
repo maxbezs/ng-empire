@@ -124,7 +124,7 @@ const RegistrationPage: React.FC = () => {
       if (!selectedMembership) {
         throw new Error('Membership type not found');
       }
-      const GRAPHQL_ENDPOINT = process.env.GRAPHQL_API_URL || 'http://localhost:3000/api/graphql';
+      const GRAPHQL_ENDPOINT = 'https://admin-panel-gym.vercel.app/api/graphql';
 
       // Step 1: Create the member
       const response = await fetch(GRAPHQL_ENDPOINT, {
