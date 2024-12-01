@@ -137,6 +137,7 @@ const RegistrationPage: React.FC = () => {
             query: `
             mutation createMember($input: MemberInput!) {
               createMember(input: $input) {
+                id
                 firstName
                 lastName
                 phone
@@ -169,10 +170,10 @@ const RegistrationPage: React.FC = () => {
         throw new Error(result.errors[0]?.message || 'GraphQL error');
       }
 
-      console.log('Member created:', result.data.createMember);
-      const token = 'token';
+      console.log('Member created:', result.data.createMember.id);
+
       // Step 2: Proceed to checkout
-      await handleCheckout(selectedMembership.priceId, token);
+      await handleCheckout(selectedMembership.priceId, result.data.createMember.id);
 
       alert('Registration successful! Redirecting to checkout...');
     } catch (err: any) {
