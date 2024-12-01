@@ -124,17 +124,16 @@ const RegistrationPage: React.FC = () => {
       if (!selectedMembership) {
         throw new Error('Membership type not found');
       }
+      const GRAPHQL_ENDPOINT = process.env.GRAPHQL_API_URL || 'http://localhost:3000/api/graphql';
 
       // Step 1: Create the member
-      const response = await fetch(
-        process.env.GRAPHQL_API_URL || 'http://localhost:3000/api/graphql',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            query: `
+      const response = await fetch(GRAPHQL_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          query: `
             mutation createMember($input: MemberInput!) {
               createMember(input: $input) {
                 id
@@ -145,20 +144,19 @@ const RegistrationPage: React.FC = () => {
               }
             }
           `,
-            variables: {
-              input: {
-                firstName: formattedData.name,
-                lastName: formattedData.surname,
-                dateOfBirth: formattedData.dateOfBirth.toISOString(),
-                gender: formattedData.gender,
-                phone: formattedData.phone,
-                email: formattedData.email,
-                password: formattedData.password
-              }
+          variables: {
+            input: {
+              firstName: formattedData.name,
+              lastName: formattedData.surname,
+              dateOfBirth: formattedData.dateOfBirth.toISOString(),
+              gender: formattedData.gender,
+              phone: formattedData.phone,
+              email: formattedData.email,
+              password: formattedData.password
             }
-          })
-        }
-      );
+          }
+        })
+      });
 
       if (!response.ok) {
         throw new Error('Failed to create member');
@@ -186,17 +184,16 @@ const RegistrationPage: React.FC = () => {
 
   const handleCheckout = async (priceId: string, token: string) => {
     setLoading(true);
+    const GRAPHQL_ENDPOINT = process.env.GRAPHQL_API_URL || 'http://localhost:3000/api/graphql';
 
     try {
-      const response = await fetch(
-        process.env.GRAPHQL_API_URL || 'http://localhost:3000/api/graphql',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            query: `
+      const response = await fetch(GRAPHQL_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          query: `
             mutation createCheckoutSession($input: CreateCheckoutSessionInput!) {
               createCheckoutSession(input: $input) {
                 sessionId
@@ -204,15 +201,14 @@ const RegistrationPage: React.FC = () => {
               }
             }
           `,
-            variables: {
-              input: {
-                priceId, // Ensure this is defined or passed
-                token // Ensure this is defined or passed
-              }
+          variables: {
+            input: {
+              priceId, // Ensure this is defined or passed
+              token // Ensure this is defined or passed
             }
-          })
-        }
-      );
+          }
+        })
+      });
 
       const result = await response.json();
       console.log('Full Response:', result);
