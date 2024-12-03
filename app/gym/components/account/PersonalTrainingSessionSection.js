@@ -26,22 +26,34 @@ function PersonalTrainingSessionSection() {
     fetchData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (!memberData) return <div>Please log in to view your sessions.</div>;
+  if (loading)
+    return (
+      <div className="flex h-screen items-center justify-center bg-gray-100 text-gray-700">
+        Loading...
+      </div>
+    );
+
+  if (!memberData)
+    return (
+      <div className="flex h-screen items-center justify-center bg-gray-100 text-red-500">
+        Please log in to view your sessions.
+      </div>
+    );
 
   return (
-    <div>
-      <h1>Personal Training Sessions</h1>
+    <div className="mx-auto max-w-4xl rounded-lg bg-white p-6 shadow-lg">
+      <h1 className="mb-4 text-2xl font-bold text-gray-800">Personal Training Sessions</h1>
       {sessions.length > 0 ? (
-        <ul>
+        <ul className="space-y-2">
           {sessions.map((session) => (
-            <li key={session.id}>
-              {session.date} - {session.status}
+            <li key={session.id} className="rounded-lg bg-gray-100 p-4 shadow-md hover:bg-gray-200">
+              <span className="font-medium text-gray-700">{session.date}</span> -{' '}
+              <span className="text-gray-600">{session.status}</span>
             </li>
           ))}
         </ul>
       ) : (
-        <p>No sessions available.</p>
+        <p className="text-gray-600">No sessions available.</p>
       )}
     </div>
   );

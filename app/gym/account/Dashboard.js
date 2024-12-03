@@ -17,8 +17,8 @@ const Dashboard = ({ memberData, onLogout }) => (
         <NotificationsSection memberData={memberData} />
         <PersonalTrainingSessionSection />
         <PersonalDataSection memberData={memberData} />
-        <ClassesSection memberData={memberData} />
         <VisitHistory />
+        <ClassesSection memberData={memberData} />
       </div>
     </main>
   </div>
