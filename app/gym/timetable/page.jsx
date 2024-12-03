@@ -1,6 +1,5 @@
 // app/timetable/page.js
 
-import TimetableFilter from './TimetableFilter';
 import TimetableList from './TimetableList';
 const GRAPHQL_ENDPOINT = 'https://admin-panel-gym.vercel.app/api/graphql';
 const fetchClassesData = async () => {
@@ -44,7 +43,7 @@ const TimetablePage = async () => {
     <div className="px-5 py-10 text-black">
       <div className="mx-auto max-w-6xl">
         <h1 className="mx-auto w-fit p-2 text-4xl">Timetable</h1>
-        <TimetableFilter />
+        {/*<TimetableFilter />*/}
         <TimetableList classes={classes} />
       </div>
     </div>

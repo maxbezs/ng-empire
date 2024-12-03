@@ -1,5 +1,6 @@
 'use client';
 
+import { formatDate } from 'lib/utils';
 import { useState } from 'react';
 
 const TimetableList = ({ classes }) => {
@@ -18,7 +19,7 @@ const TimetableList = ({ classes }) => {
 
   const handleBookNow = () => {
     // Handle booking logic here
-    console.log('Class booked:', selectedClass);
+    console.log('Class can be booked via admin panel for now(in development)');
     closeModal();
   };
 
@@ -32,11 +33,9 @@ const TimetableList = ({ classes }) => {
               <p>{classInfo.description}</p>
             </div>
             <div className="border-t border-gray-700 p-4">
-              <p className="text-black">Time: {classInfo.scheduleTime}</p>
+              <p className="text-black">Time: {formatDate(classInfo.scheduleTime)}</p>
               <p className="mb-1 text-xs text-green-500">Location: {classInfo.location}</p>
-              <h3 className="text-lg font-bold">
-                Instructor: {classInfo.trainerId.firstName} {classInfo.trainerId.lastName}
-              </h3>
+              <h3 className="text-lg font-bold">Instructor: {classInfo.trainerId}</h3>
               <p className="mb-2 text-sm">Duration: {classInfo.duration} mins</p>
               <p className="text-sm text-green-400">Capacity: {classInfo.capacity}</p>
               <div className="mt-2 flex items-center">
