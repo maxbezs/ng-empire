@@ -1,14 +1,46 @@
+'use client';
+import { getMemberSubscription } from 'app/gym/account/actions';
 import { formatDate } from 'lib/utils';
+import { useEffect, useState } from 'react';
 
-const PaymentSection = ({ memberData }) => (
-  <section className="rounded-lg bg-white p-6 shadow">
-    <h2 className="text-lg font-semibold text-gray-800">Payment & Subscription</h2>
-    <p className="my-2 text-gray-600">Next billing date: {formatDate(memberData?.end_date)}</p>
-    <p className="text-gray-600">Current plan: {memberData.membership}</p>
-    <button className="mt-4 rounded bg-blue-500 px-4 py-2 text-white">
-      Manage Payment Settings
-    </button>
-  </section>
-);
+function MemberSubscription() {
+  const [subscription, setSubscription] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-export default PaymentSection;
+  useEffect(() => {
+    async function fetchSubscription() {
+      try {
+        const data = await getMemberSubscription();
+        setSubscription(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchSubscription();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div>
+      <h1>Member Subscription</h1>
+      {subscription ? (
+        <div>
+          <p>Status: {subscription.status}</p>
+          <p>Start Date: {formatDate(subscription.startDate)}</p>
+          <p>End Date: {formatDate(subscription.endDate)}</p>
+          <p>Stripe Subscription ID: {subscription.stripeSubscriptionId}</p>
+        </div>
+      ) : (
+        <p>No subscription data available.</p>
+      )}
+    </div>
+  );
+}
+
+export default MemberSubscription;

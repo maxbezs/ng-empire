@@ -17,14 +17,13 @@ const fetchClassesData = async () => {
               id
               name
               description
-              trainerId {
-                firstName
-                lastName
-              }
+              trainerId
               scheduleTime
               location
               duration
               capacity
+              participants
+              currentEnrollment
             }
           }
         `

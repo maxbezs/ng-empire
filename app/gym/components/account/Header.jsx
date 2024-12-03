@@ -1,5 +1,3 @@
-import { formatDate } from 'lib/utils';
-
 const Header = ({ memberData, onLogout }) => {
   // Dummy points for the member
   const dummyPoints = 7; // Example value
@@ -13,7 +11,7 @@ const Header = ({ memberData, onLogout }) => {
           <h1 className="text-xl font-bold text-gray-800">
             Welcome, {memberData?.firstName} {memberData?.lastName}
           </h1>
-          <p className="text-gray-600">Member since: {formatDate(memberData.createdAt)}</p>
+          {/*<p className="text-gray-600">Member since: {formatDate(memberData.createdAt)}</p>*/}
         </div>
 
         <div className="flex items-center space-x-6">
