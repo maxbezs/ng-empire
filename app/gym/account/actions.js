@@ -1,7 +1,7 @@
 'use server';
 
 import { fetchMemberData, manageCookies, validateToken } from 'app/api-utils/utils';
-const GRAPHQL_ENDPOINT = 'http://localhost:3000/api/graphql';
+const GRAPHQL_ENDPOINT = 'https://admin-panel-gym.vercel.app/api/graphql';
 
 export async function checkSessionAction() {
   console.log('checkSessionAction: Starting session validation.');
