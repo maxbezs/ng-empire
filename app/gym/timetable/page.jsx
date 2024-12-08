@@ -21,7 +21,6 @@ const fetchClassesData = async () => {
               location
               duration
               capacity
-              participants
               currentEnrollment
             }
           }
