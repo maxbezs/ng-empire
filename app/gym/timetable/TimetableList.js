@@ -22,7 +22,16 @@ const TimetableList = ({ classes, trainers }) => {
     const trainer = trainers.find((t) => t.id === trainerId);
     return trainer ? `${trainer.firstName} ${trainer.lastName}` : 'Unknown Trainer';
   };
+  function convertTimestampToLocalDateTime(timestamp) {
+    // Ensure the timestamp is a number
+    const numericTimestamp = Number(timestamp);
 
+    // Convert the timestamp to milliseconds and create a Date object
+    const date = new Date(numericTimestamp);
+
+    // Format the date to the user's local time and date settings
+    return date.toLocaleString();
+  }
   return (
     <div>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
@@ -57,7 +66,9 @@ const TimetableList = ({ classes, trainers }) => {
           <div className="w-full max-w-sm rounded-lg bg-white p-6">
             <h2 className="text-xl font-bold">{selectedClass.name}</h2>
             <p>{selectedClass.description}</p>
-            <p className="text-black">Time: {selectedClass.scheduleTime}</p>
+            <p className="text-black">
+              Time: {convertTimestampToLocalDateTime(selectedClass.scheduleTime)}
+            </p>
             <p className="mb-1 text-xs text-green-500">Location: {selectedClass.location}</p>
             <h3 className="text-lg font-bold">
               Instructor: {getTrainerFullName(selectedClass.trainerId)}
