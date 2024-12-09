@@ -29,9 +29,18 @@ const TimetableList = ({ classes, trainers }) => {
     // Convert the timestamp to milliseconds and create a Date object
     const date = new Date(numericTimestamp);
 
-    // Format the date to the user's local time and date settings
-    return date.toLocaleString();
+    // Format the date to the user's local time without seconds
+    const options = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    };
+    return date.toLocaleString(undefined, options);
   }
+
   return (
     <div>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
