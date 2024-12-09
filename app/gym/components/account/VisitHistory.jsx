@@ -42,13 +42,13 @@ function MemberVisits() {
       {visits.length > 0 ? (
         <ul className="space-y-2">
           {visits.map((visit) => (
-            <li
-              key={visit.id}
-              className="rounded-lg border border-gray-200 bg-gray-50 p-4 shadow-md hover:bg-gray-100"
-            >
+            <li key={visit.id} className="rounded-lg border p-4">
               <p className="text-gray-700">
                 <span className="font-semibold">Visit Date:</span>{' '}
-                {new Date(visit.visitDate).toLocaleDateString()}
+                {new Date(visit.visitDate).toLocaleString(undefined, {
+                  dateStyle: 'short',
+                  timeStyle: 'short'
+                })}
               </p>
             </li>
           ))}

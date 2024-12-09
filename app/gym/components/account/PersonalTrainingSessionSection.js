@@ -47,8 +47,12 @@ function PersonalTrainingSessionSection() {
         <ul className="space-y-2">
           {sessions.map((session) => (
             <li key={session.id} className="rounded-lg bg-gray-100 p-4 shadow-md hover:bg-gray-200">
-              <span className="font-medium text-gray-700">{session.date}</span> -{' '}
-              <span className="text-gray-600">{session.status}</span>
+              <span className="font-medium text-gray-700">
+                {new Date(session.date).toLocaleString(undefined, {
+                  dateStyle: 'short',
+                  timeStyle: 'short'
+                })}
+              </span>
             </li>
           ))}
         </ul>

@@ -3,7 +3,7 @@
 import { formatDate } from 'lib/utils';
 import { useState } from 'react';
 
-const TimetableList = ({ classes }) => {
+const TimetableList = ({ classes, trainers }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedClass, setSelectedClass] = useState(null);
 
@@ -17,10 +17,10 @@ const TimetableList = ({ classes }) => {
     setSelectedClass(null);
   };
 
-  const handleBookNow = () => {
-    // Handle booking logic here
-    console.log('Class can be booked via admin panel for now(in development)');
-    closeModal();
+  // Helper function to find trainer by ID and return full name
+  const getTrainerFullName = (trainerId) => {
+    const trainer = trainers.find((t) => t.id === trainerId);
+    return trainer ? `${trainer.firstName} ${trainer.lastName}` : 'Unknown Trainer';
   };
 
   return (
@@ -30,12 +30,13 @@ const TimetableList = ({ classes }) => {
           <div key={classInfo.id} className="h-fit rounded-lg bg-white">
             <div className="rounded-t-lg bg-white p-3 text-black">
               <h2 className="text-xl font-bold">{classInfo.name}</h2>
-              <p>{classInfo.description}</p>
             </div>
             <div className="border-t border-gray-700 p-4">
               <p className="text-black">Time: {formatDate(classInfo.scheduleTime)}</p>
               <p className="mb-1 text-xs text-green-500">Location: {classInfo.location}</p>
-              <h3 className="text-lg font-bold">Instructor: {classInfo.trainerId}</h3>
+              <h3 className="text-lg font-bold">
+                Instructor: {getTrainerFullName(classInfo.trainerId)}
+              </h3>
               <p className="mb-2 text-sm">Duration: {classInfo.duration} mins</p>
               <p className="text-sm text-green-400">Capacity: {classInfo.capacity}</p>
               <div className="mt-2 flex items-center">
@@ -59,7 +60,7 @@ const TimetableList = ({ classes }) => {
             <p className="text-black">Time: {selectedClass.scheduleTime}</p>
             <p className="mb-1 text-xs text-green-500">Location: {selectedClass.location}</p>
             <h3 className="text-lg font-bold">
-              Instructor: {selectedClass.trainerId.firstName} {selectedClass.trainerId.lastName}
+              Instructor: {getTrainerFullName(selectedClass.trainerId)}
             </h3>
             <p className="mb-2 text-sm">Duration: {selectedClass.duration} mins</p>
             <p className="text-sm text-green-400">Capacity: {selectedClass.capacity}</p>
@@ -70,10 +71,7 @@ const TimetableList = ({ classes }) => {
               >
                 Cancel
               </button>
-              <button
-                onClick={handleBookNow}
-                className="rounded-md bg-[#92d4ee] px-4 py-2 text-white hover:bg-blue-700"
-              >
+              <button className="rounded-md bg-[#92d4ee] px-4 py-2 text-white hover:bg-blue-700">
                 Book Now
               </button>
             </div>
